@@ -1,0 +1,49 @@
+package com.blackjack.Model;
+
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.annotation.Id;
+import com.blackjack.Contracts.IResponse;
+
+@Document(collection = "ReplyChain")
+public class Reply implements IResponse{
+	
+	@Id
+	private String Id;
+	
+	@Indexed(direction = IndexDirection.DESCENDING)
+	private Date timeStamp;
+	
+	private String message;
+	private List<Reply> replies;
+	
+	// Modeled Implementation
+	public Date timeStamp() {
+		// TODO Auto-generated method stub
+		return this.timeStamp;
+	}
+
+	public String message() {
+		// TODO Auto-generated method stub
+		return this.message;
+	}
+	
+	// Model Specific 
+	public List<Reply> replies(){ return this.replies; }
+	
+	// Setters for Model
+		public void setTimeStamp(Date timeStamp) { this.timeStamp = timeStamp; }
+		
+		public void setMessage(String message) { this.message = message; }
+		
+		public void setReplies(List<Reply> replies) { this.replies = replies; }
+
+		
+	
+	
+
+}
