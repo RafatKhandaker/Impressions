@@ -23,7 +23,7 @@ public class AuthSecurity implements AppSecurity{
 						"/resources/static/**"
 						)
 				);
-		this.logPage = "/login";
+		this.logPage = "/login/login";
 		this.resFolder = "/resources/static/**";
 	}
 

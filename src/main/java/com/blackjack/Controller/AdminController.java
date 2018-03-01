@@ -17,7 +17,7 @@ public class AdminController {
 	
 	// admin
 		@GetMapping("/home")
-		public String getSiteSettings() {
+		public String getSiteSettings() {			
 			return viewResolver.getSiteSettings();
 		}
 		
