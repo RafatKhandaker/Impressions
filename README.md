@@ -30,6 +30,7 @@ if Java is not installed please update your system and install JDK 1.8 from:
 3) Install Mongo DB from 
 
 	For Windows, mac or linux:
+	
 		https://docs.mongodb.com/manual/administration/install-community/
 
 	For Mac : (Option to install mongo from Brew install)
