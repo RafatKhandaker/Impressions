@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Impressions Survey #
 
 This Application Integrates Spring MVC, Spring Boot, Spring Thymeleaf, Spring MongoDB & Spring Security
@@ -31,12 +30,17 @@ if Java is not installed please update your system and install JDK 1.8 from:
 3) Install Mongo DB from 
 
 	For Windows, mac or linux:
-	https://docs.mongodb.com/manual/administration/install-community/
+		https://docs.mongodb.com/manual/administration/install-community/
 
-	For Mac : Option to install mongo from Brew install 
-	Install Brew:  https://www.howtogeek.com/211541/homebrew-for-os-x-easily-installs-desktop-apps-and-terminal-utilities/
+	For Mac : (Option to install mongo from Brew install)
+	
+	Install Brew:  
+	
+		https://www.howtogeek.com/211541/homebrew-for-os-x-easily-installs-desktop-apps-and-terminal-utilities/
 
-	Install Mongo From Brew:  https://treehouse.github.io/installation-guides/mac/mongo-mac.html
+	Install Mongo From Brew: 
+	
+		https://treehouse.github.io/installation-guides/mac/mongo-mac.html
 
 
 4) create the specified /data/db  folder file path for mongo db after running mongodb instance
@@ -82,4 +86,3 @@ This project will be integrated with an Android application in order for users t
 # Who do I talk to?
 BY : Rafat Khandaker Repo owner
 
->>>>>>> b6f2d154d3965da4ea93e12279b207cc9fdd55e4
