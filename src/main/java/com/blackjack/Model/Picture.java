@@ -43,4 +43,7 @@ public class Picture implements IPicture{
 		return this.isDefault;
 	}
 	
+	public Date getDate() {
+		return this.date;
+	}
 }
