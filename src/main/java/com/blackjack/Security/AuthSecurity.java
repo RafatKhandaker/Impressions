@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import com.blackjack.Contracts.AppSecurity;
+import com.blackjack.Contracts.IAppSecurity;
 
-public class AuthSecurity implements AppSecurity{
+public class AuthSecurity implements IAppSecurity{
 	
 	private HttpSecurity http;
 	private List<String> openPages = new ArrayList<>();

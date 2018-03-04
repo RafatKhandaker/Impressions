@@ -7,13 +7,14 @@ import org.springframework.data.annotation.*;
 public class Question<T> {
 	
 	@Id
-	private String Id;
+	private String email;
 	private String surveyId;
 	private String surveyName;
 	private String question;
 	private double score;
 	
-	public Question(String surveyId, String surveyName, String question, Double score){
+	public Question(String email, String surveyId, String surveyName, String question, Double score){
+		this.email = email;
 		this.surveyId = surveyId;
 		this.surveyName = surveyName;
 		this.question = question;

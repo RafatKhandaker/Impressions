@@ -1,6 +1,6 @@
 package com.blackjack.Contracts;
 
-public interface AppSecurity {
+public interface IAppSecurity {
 
 	public void addPagePermissions() throws Exception;
 	
