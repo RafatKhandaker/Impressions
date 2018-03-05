@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.validation.constraints.Null;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.IndexDirection;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @SuppressWarnings("unused")
@@ -18,6 +20,7 @@ public class ErrorLog {
 	@Null
 	private String password;
 	private String log;
+	@Indexed(direction = IndexDirection.DESCENDING)
 	private Timestamp timeStamp;
 	
 	public ErrorLog(String username, Exception error) {

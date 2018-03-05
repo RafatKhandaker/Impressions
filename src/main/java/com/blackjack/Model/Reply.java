@@ -15,6 +15,7 @@ public class Reply implements IResponse{
 	@Id
 	private String Id;
 	private String email;
+	
 	@Indexed(direction = IndexDirection.DESCENDING)
 	private Date timeStamp;
 	private String message;
@@ -37,17 +38,25 @@ public class Reply implements IResponse{
 		return this.message;
 	}
 	
-	public List<Reply> replies(){ return this.replies; }
-	public String email() { return this.email; } 
+	public List<Reply> replies(){ 
+		return this.replies; 
+	}
 	
-		public void setTimeStamp(Date timeStamp) { this.timeStamp = timeStamp; }
-		
-		public void setMessage(String message) { this.message = message; }
-		
-		public void setReplies(List<Reply> replies) { this.replies = replies; }
-
-		
+	public String email() { 
+		return this.email; 
+	} 
 	
 	
+	public void setTimeStamp(Date timeStamp) { 
+		this.timeStamp = timeStamp; 
+	}	
+	
+	public void setMessage(String message) { 
+		this.message = message; 
+	}
+		
+	public void setReplies(List<Reply> replies) { 
+		this.replies = replies; 
+	}	
 
 }
