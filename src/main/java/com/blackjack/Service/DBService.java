@@ -2,6 +2,8 @@ package com.blackjack.Service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.blackjack.Contracts.IAuthentication;
 import com.blackjack.Contracts.IDBService;
 import com.blackjack.Contracts.IProfile;
@@ -14,6 +16,7 @@ import com.blackjack.Repository.RepliesRepository;
 import com.blackjack.Repository.SurveysRepository;
 import com.blackjack.Repository.UserProfilesRepository;
 
+@Component
 public class DBService<T> implements IDBService {
 
 	private AuthenticationRepository authRepo;

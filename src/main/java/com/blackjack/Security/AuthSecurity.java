@@ -20,10 +20,11 @@ public class AuthSecurity implements IAppSecurity{
 						"/",
 						"/welcome",
 						"/account/",
-						"/resources/static/**"
+						"/resources/static/**",
+						"/login/login"
 						)
 				);
-		this.logPage = "/login/login";
+		this.logPage = "/login/admin";
 		this.resFolder = "/resources/static/**";
 	}
 
@@ -32,7 +33,11 @@ public class AuthSecurity implements IAppSecurity{
 		
 		this.http.authorizeRequests()
 			.antMatchers(
-					this.openPages.get(0), this.openPages.get(1), this.openPages.get(2), this.openPages.get(3)
+					this.openPages.get(0), 
+					this.openPages.get(1), 
+					this.openPages.get(2), 
+					this.openPages.get(3), 
+					this.openPages.get(4)
 					).permitAll().anyRequest().authenticated()
 				.and()
 			.formLogin()
