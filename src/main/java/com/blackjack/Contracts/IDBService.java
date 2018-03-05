@@ -4,5 +4,5 @@ public interface IDBService {
 	
 	public boolean isAuthenticated();
 	
-	public boolean checkLoginCred();
+	public boolean checkLoginCred(String email, String password);
 }
