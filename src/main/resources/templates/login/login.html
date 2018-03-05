@@ -36,6 +36,11 @@
 
     <script th:src="@{/scripts/jquery/jquery.min.js}"></script>
     <script th:src="@{/scripts/pages/login-script.js}"></script>
-    
+    <script>
+    var modal = $('#id01');
+    		$('.close').onclick = function(e){
+    			this.modal.css('display: none');
+    		}
+    </script>
 	</body>
 </html>
