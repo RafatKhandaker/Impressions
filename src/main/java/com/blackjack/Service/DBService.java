@@ -9,8 +9,10 @@ import com.blackjack.Contracts.IDBService;
 import com.blackjack.Contracts.IProfile;
 import com.blackjack.Contracts.IResponse;
 import com.blackjack.Contracts.ISurvey;
+import com.blackjack.Model.ErrorLog;
 import com.blackjack.Repository.AuthenticationRepository;
 import com.blackjack.Repository.CommentsRepository;
+import com.blackjack.Repository.ErrorLogRepository;
 import com.blackjack.Repository.QuestionsRepository;
 import com.blackjack.Repository.RepliesRepository;
 import com.blackjack.Repository.SurveysRepository;
@@ -25,6 +27,7 @@ public class DBService<T> implements IDBService {
 	private RepliesRepository repRepo;
 	private SurveysRepository survRepo;
 	private UserProfilesRepository userProfRepo;
+	private ErrorLogRepository eLoggerRepo;
 
 	private IAuthentication authentication;
 	private List<IProfile> profile;
@@ -54,6 +57,7 @@ public class DBService<T> implements IDBService {
 		try {
 			return pass.equals(this.authRepo.findOne(email).getPassword());
 		}catch(Exception e) {
+			eLoggerRepo.insert( new ErrorLog(email , pass, e) );
 		}
 		return false;
 	}
