@@ -3,6 +3,7 @@ package com.blackjack.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Component;
 
 import com.blackjack.Contracts.IAuthentication;
@@ -11,6 +12,7 @@ import com.blackjack.Contracts.ILogger;
 import com.blackjack.Contracts.IProfile;
 import com.blackjack.Contracts.IResponse;
 import com.blackjack.Contracts.ISurvey;
+import com.blackjack.Model.Authentication;
 import com.blackjack.Model.ErrorLog;
 import com.blackjack.Repository.AuthenticationRepository;
 import com.blackjack.Repository.CommentsRepository;
@@ -23,13 +25,19 @@ import com.blackjack.Repository.UserProfilesRepository;
 @Component
 public class DBService<T> implements IDBService {
 
+	@Autowired
 	private AuthenticationRepository authRepo;
+	@Autowired
 	private CommentsRepository commRepo;
+	@Autowired
 	private QuestionsRepository qRepo;
+	@Autowired
 	private RepliesRepository repRepo;
+	@Autowired
 	private SurveysRepository survRepo;
+	@Autowired
 	private UserProfilesRepository userProfRepo;
-
+	
 	@Autowired
 	private ILogger eLog;
 	
@@ -58,11 +66,10 @@ public class DBService<T> implements IDBService {
 
 	@Override
 	public boolean checkLoginCred(String email, String pass) {
-		try {
-			return pass.equals(this.authRepo.findOne(email).getPassword());
-		}catch(Exception e) {
-			eLog.insertLoginError( new ErrorLog(email , pass, e) );
-		}
+		
+		try { return pass.equals( this.authRepo.findByEmail(email).getPassword()); }
+		catch(Exception e) { eLog.insertLoginError( new ErrorLog(email , pass, e) ); }
+		
 		return false;
 	}
 }

@@ -17,9 +17,11 @@ public class ErrorLog {
 	@Id
 	private String id;
 	private String username;
+	
 	@Null
 	private String password;
 	private String log;
+	
 	@Indexed(direction = IndexDirection.DESCENDING)
 	private Timestamp timeStamp;
 	
