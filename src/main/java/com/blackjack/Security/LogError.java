@@ -12,15 +12,13 @@ public class LogError implements ILogger {
 
 	@Autowired
 	private ErrorLogRepository eLogRepo;
-	private ErrorLog log;
 	
-	public LogError(ErrorLog log) {
-		this.log = log;
+	public LogError() {
 	}
 
 	@Override
-	public void insertLoginError() throws Exception {
-		this.eLogRepo.insert(this.log);
-	}	
-	
+	public void insertLoginError(ErrorLog log) {
+		this.eLogRepo.insert(log);
+	}
+
 }

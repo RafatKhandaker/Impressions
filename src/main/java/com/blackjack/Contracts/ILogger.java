@@ -1,6 +1,8 @@
 package com.blackjack.Contracts;
 
+import com.blackjack.Model.ErrorLog;
+
 public interface ILogger {
 
-	public void insertLoginError() throws Exception;
+	void insertLoginError(ErrorLog log);
 }

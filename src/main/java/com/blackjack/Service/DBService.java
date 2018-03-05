@@ -2,22 +2,24 @@ package com.blackjack.Service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.blackjack.Contracts.IAuthentication;
 import com.blackjack.Contracts.IDBService;
+import com.blackjack.Contracts.ILogger;
 import com.blackjack.Contracts.IProfile;
 import com.blackjack.Contracts.IResponse;
 import com.blackjack.Contracts.ISurvey;
 import com.blackjack.Model.ErrorLog;
 import com.blackjack.Repository.AuthenticationRepository;
 import com.blackjack.Repository.CommentsRepository;
-import com.blackjack.Repository.ErrorLogRepository;
 import com.blackjack.Repository.QuestionsRepository;
 import com.blackjack.Repository.RepliesRepository;
 import com.blackjack.Repository.SurveysRepository;
 import com.blackjack.Repository.UserProfilesRepository;
 
+@SuppressWarnings("unused")
 @Component
 public class DBService<T> implements IDBService {
 
@@ -27,8 +29,10 @@ public class DBService<T> implements IDBService {
 	private RepliesRepository repRepo;
 	private SurveysRepository survRepo;
 	private UserProfilesRepository userProfRepo;
-	private ErrorLogRepository eLoggerRepo;
 
+	@Autowired
+	private ILogger eLog;
+	
 	private IAuthentication authentication;
 	private List<IProfile> profile;
 	private List<IResponse> response;
@@ -57,7 +61,7 @@ public class DBService<T> implements IDBService {
 		try {
 			return pass.equals(this.authRepo.findOne(email).getPassword());
 		}catch(Exception e) {
-			eLoggerRepo.insert( new ErrorLog(email , pass, e) );
+			eLog.insertLoginError( new ErrorLog(email , pass, e) );
 		}
 		return false;
 	}
