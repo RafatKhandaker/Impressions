@@ -51,9 +51,10 @@ public class DBService<T> implements IDBService {
 
 	@Override
 	public boolean checkLoginCred(String email, String pass) {
-		if( this.authRepo.exists(email) ) {
+		try {
 			return pass.equals(this.authRepo.findOne(email).getPassword());
-		};
+		}catch(Exception e) {
+		}
 		return false;
 	}
 }
