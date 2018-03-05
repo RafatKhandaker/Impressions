@@ -25,8 +25,8 @@ public class DbSeeder implements CommandLineRunner {
 		// TODO Auto-generated method stub
 		
 		// reset database on start
-		qRepository.deleteAll();
-		authRepository.deleteAll();
+		this.qRepository.deleteAll();
+		this.authRepository.deleteAll();
 		//Add Object to DB
 		populateQuestions();
 		populateAuthentications();
