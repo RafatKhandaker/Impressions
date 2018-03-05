@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
+	<head>	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link th:href="@{/css/pages/login-style.css}" rel="stylesheet" type="text/css">
+        <meta name="_csrf" content="${_csrf.token}"/>
+		<meta name="_csrf_header" content="${_csrf.headerName}"/>
+		
 		<title>Login Page</title>
 	</head>
 	<body>
 		<h2>Modal Login Form</h2>
 		<button id="loginBtn" style="width:auto;">Login</button>
 		<div id="id01" class="modal">
-  			<form class="modal-content animate" action="/action_page.php">
+  			<form:form class="modal-content animate" method="post" action="/login/login">
+  			    <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}"/>
     				<div class="imgcontainer">
       				<span class="close" title="Close Modal">&times;</span>
       				<img src="img_avatar2.png" alt="Avatar" class="avatar">
     				</div>
     				<div class="container">
-      				<label for="uname"><b>Username</b></label>
-      				<input type="text" placeholder="Enter Username" name="uname" required>
-      				<label for="psw"><b>Password</b></label>
-      				<input type="password" placeholder="Enter Password" name="psw" required>
+      				<label for="username"><b>Username</b></label>
+      				<input type="text" placeholder="Enter Username" name="username"  required>
+      				<label for="password"><b>Password</b></label>
+      				<input type="password" placeholder="Enter Password" name="password" required>
         
       				<button type="submit">Login</button>
       				<label>
@@ -28,7 +32,7 @@
     				</div>
     				<div class="container" style="background-color:#f1f1f1">
       				<button type="button" class="cancelbtn">Cancel</button>
-      				<span class="psw">Forgot <a href="#">password?</a></span>
+      				<span class="=">Forgot <a href="#">password?</a></span>
     				</div>
   			</form>
 		</div>

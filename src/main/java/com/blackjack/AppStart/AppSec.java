@@ -20,6 +20,9 @@ public class AppSec extends WebSecurityConfigurerAdapter{
 		authSec = new AuthSecurity(http);
 		authSec.addPagePermissions();
 		authSec.ignoreResourceFolder(); 
+		authSec.disableCSRFProtection();
+	// authSec.enableCSRFProtection();
+	
     }
 
     @Autowired

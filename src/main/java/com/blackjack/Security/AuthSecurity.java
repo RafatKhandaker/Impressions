@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
 import com.blackjack.Contracts.IAppSecurity;
 
 public class AuthSecurity implements IAppSecurity{
@@ -53,6 +55,19 @@ public class AuthSecurity implements IAppSecurity{
 	public void ignoreResourceFolder() throws Exception {
 		this.http.authorizeRequests().antMatchers(this.resFolder).permitAll().anyRequest().permitAll();
 
+	}
+
+	@Override
+	public void enableCSRFProtection() throws Exception {
+		this.http
+			.csrf()
+				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());		
+	}
+
+	@Override
+	public void disableCSRFProtection() throws Exception {
+		this.http
+			.csrf().disable();		
 	}
 
 
