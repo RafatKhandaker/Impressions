@@ -37,7 +37,7 @@ public class LoginController{
 	public String postProfile(@RequestParam("username") String email, @RequestParam("password") String password) {
 		
 		if(dbService.checkLoginCred(email, password)) { 
-			return viewResolver.getLoginIndex(); 
+			return viewResolver.getAccountSettingsIndex(); 
 			};
 		
 		return viewResolver.getLogin();

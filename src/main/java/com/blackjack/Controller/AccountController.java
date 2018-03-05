@@ -17,11 +17,6 @@ public class AccountController  {
 	// home
 	@GetMapping("/home")
 	public String getHome() {
-		/*MongoClient mongo = new MongoClient("localhost", 27017);
-		String x = mongo.getDatabase("test").toString();
-		System.out.println(x);
-		mongo.close();
-		*/
 		return viewResolver.getHome();
 	}
 	
@@ -43,4 +38,8 @@ public class AccountController  {
 	}
 		
 	
+	@GetMapping("/settings/index")
+	public String getSettingsIndex() {
+		return viewResolver.getAccountSettingsIndex();
+	}
 }

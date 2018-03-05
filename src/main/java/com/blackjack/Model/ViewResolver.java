@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 	 private String siteSettingsPage;
 	 private String loginPage;
 	 private String loginIndexPage;
+	 private String accountSettingsIndexPage;
 	 
 	public ViewResolver() {
 		this.welcomePage = "welcome";
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Component;
 		this.siteSettingsPage = "/admin/site-setting";
 		this.loginPage = "/login/login";
 		this.loginIndexPage = "/login/index";
+		this.accountSettingsIndexPage = "/account/settings/index";
 	}
 	 
 	 public String getWelcome() {
@@ -43,5 +45,9 @@ import org.springframework.stereotype.Component;
 	 
 	 public String getLoginIndex() {
 		return this.loginIndexPage;
+	 }
+	 
+	 public String getAccountSettingsIndex() {
+		 return this.accountSettingsIndexPage;
 	 }
 }
