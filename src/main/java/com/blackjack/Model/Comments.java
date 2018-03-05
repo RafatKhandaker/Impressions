@@ -14,6 +14,7 @@ import com.blackjack.Contracts.IResponse;
 public class Comments implements IResponse{
 		
 	@Id
+	private String id;
 	private String email;
 	
 	@Indexed(direction = IndexDirection.DESCENDING)
@@ -23,32 +24,28 @@ public class Comments implements IResponse{
 	private List<Reply> replies;
 	
 	
-	public Comments(Date timeStamp, String message, List<Reply> replies) {
+	public Comments(String email, Date timeStamp, String message, List<Reply> replies) {
+		this.email = email;
 		this.timeStamp =  timeStamp;
 		this.message = message;
 		this.replies = replies;
 	}
 	
-	// Modeled Implementation 
 	public Date timeStamp() {
-		// TODO Auto-generated method stub
 		return this.timeStamp;
 	}
 
 	public String message() {
-		// TODO Auto-generated method stub
 		return this.message;
 	}
 	
+	public String getEmail() { return this.email; }
+	
 	// Model Specific to class 
 	public List<Reply> replies(){ return this.replies; }
-	
-	
-	// Setters for Model
-	public void setTimeStamp(Date timeStamp) { this.timeStamp = timeStamp; }
-	
-	public void setMessage(String message) { this.message = message; }
-	
+	public void setEmail(String email) { this.email = email; }
+	public void setTimeStamp(Date timeStamp) { this.timeStamp = timeStamp; }	
+	public void setMessage(String message) { this.message = message; } 
 	public void setReplies(List<Reply> replies) { this.replies = replies; }
 
 	public String Message() {

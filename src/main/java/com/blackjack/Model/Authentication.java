@@ -9,6 +9,7 @@ import com.blackjack.Contracts.IAuthentication;
 public class Authentication implements IAuthentication{
 
 	@Id
+	private String id;
 	private String email;
 	private String password;
 	private boolean isActive;

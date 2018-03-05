@@ -7,6 +7,7 @@ import org.springframework.data.annotation.*;
 public class Question<T> {
 	
 	@Id
+	private String id;
 	private String email;
 	private String surveyId;
 	private String surveyName;
@@ -21,11 +22,13 @@ public class Question<T> {
 		this.score = score;
 	}
 	
+	public void setEmail(String email) { this.email = email; }
 	public void setSurveyId(String surveyId) { this.surveyId = surveyId; }
 	public void setSurveyName(String surveyName) { this.surveyName = surveyName; }
 	public void setQuestion(String question) { this.question = question;}
 	public void setScore(Double score) { this.score = score; }
 	
+	public String getEmail() { return this.email; }
 	public String getSurveyId() { return this.surveyId; }
 	public String getSurveyName() { return this.surveyName; }
 	public String getQuestion() { return this.question; }

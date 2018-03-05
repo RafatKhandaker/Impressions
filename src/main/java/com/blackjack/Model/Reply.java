@@ -14,28 +14,32 @@ public class Reply implements IResponse{
 	
 	@Id
 	private String Id;
-	
+	private String email;
 	@Indexed(direction = IndexDirection.DESCENDING)
 	private Date timeStamp;
-	
 	private String message;
 	private List<Reply> replies;
 	
-	// Modeled Implementation
+	public Reply() {}
+	
+	public Reply( String email, Date timeStamp, String message, List<Reply> replies) {
+		this.email = email;
+		this.timeStamp = timeStamp;
+		this.message = message;
+		this.replies = replies;
+	}
+	
 	public Date timeStamp() {
-		// TODO Auto-generated method stub
 		return this.timeStamp;
 	}
 
 	public String message() {
-		// TODO Auto-generated method stub
 		return this.message;
 	}
 	
-	// Model Specific 
 	public List<Reply> replies(){ return this.replies; }
+	public String email() { return this.email; } 
 	
-	// Setters for Model
 		public void setTimeStamp(Date timeStamp) { this.timeStamp = timeStamp; }
 		
 		public void setMessage(String message) { this.message = message; }

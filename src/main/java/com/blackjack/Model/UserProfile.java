@@ -51,20 +51,49 @@ public class UserProfile implements IProfile{
 		this.isActive = isActive;
 	}
 	
-	public String email() { return this.email; }
-	public String firstName() { return this.firstName; }
-	public String lastName() { return this.lastName; }
-	public int zipcode() { return this.zipcode; }
-	public List<Double> geoLocation() { return this.geoLocation; }
-	public String summary() { return this.summary; }
-	public Survey<Object> survey() { return this.survey; }
-	public List<Comments> anonComments() { return this.anonComments; }
-	public Date lastOnline() { return this.lastOnline; } 
-	public boolean isActive() { return this.isActive; }
+	public String email() { 
+		return this.email; 
+		}
+	
+	public String firstName() { 
+		return this.firstName; 
+		}
+	
+	public String lastName() { 
+		return this.lastName; 
+		}
+	
+	public int zipcode() { 
+		return this.zipcode; 
+		}
+	
+	public List<Double> geoLocation() { 
+		return this.geoLocation; 
+		}
+	
+	public String summary() { 
+		return this.summary; 
+		}
+	
+	public Survey<Object> survey() { 
+		return this.survey; 
+		}
+	
+	public List<Comments> anonComments() { 
+		return this.anonComments; 
+		}
+
+	public Date lastOnline() { 
+		return this.lastOnline; 
+		} 
+	
+	public boolean isActive() { 
+		return this.isActive; 
+		}
 
 	@Override
-	public Queue<Picture> pictures() { return this.pictures; }
-
-	
+	public Queue<Picture> pictures() { 
+		return this.pictures; 
+		}
 
 }

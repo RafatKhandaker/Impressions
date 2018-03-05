@@ -3,10 +3,10 @@ package com.blackjack.Model;
 import org.springframework.stereotype.Component;
 
 @Component
- public class ViewResolver {
+ public final class ViewResolver {
 	 
 	 private String welcomePage;
-	 private String homePage;
+	 private String homePage;	
 	 private String profilePage;
 	 private String siteSettingsPage;
 	 private String loginPage;

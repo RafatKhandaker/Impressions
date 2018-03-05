@@ -3,6 +3,8 @@ package com.blackjack.AppStart;
 import java.util.Arrays;
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,8 +15,9 @@ import com.blackjack.Repository.QuestionsRepository;
 
 @Component
 public class DbSeeder implements CommandLineRunner {
-
+	@Autowired
 	private QuestionsRepository qRepository;
+	@Autowired
 	private AuthenticationRepository authRepository;
 	
 	@Override
@@ -22,9 +25,8 @@ public class DbSeeder implements CommandLineRunner {
 		// TODO Auto-generated method stub
 		
 		// reset database on start
-		this.qRepository.deleteAll();
-		this.authRepository.deleteAll();
-		
+		qRepository.deleteAll();
+		authRepository.deleteAll();
 		//Add Object to DB
 		populateQuestions();
 		populateAuthentications();

@@ -12,6 +12,7 @@ import com.blackjack.Contracts.IPicture;
 public class Picture implements IPicture{
 	
 	@Id
+	private String id;
 	private String email;
 	private String image;
 	private boolean isDefault;
