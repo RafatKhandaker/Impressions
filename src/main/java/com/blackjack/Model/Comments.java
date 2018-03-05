@@ -14,7 +14,7 @@ import com.blackjack.Contracts.IResponse;
 public class Comments implements IResponse{
 		
 	@Id
-	private String id;
+	private String email;
 	
 	@Indexed(direction = IndexDirection.DESCENDING)
 	private Date timeStamp;

@@ -11,11 +11,12 @@ import com.blackjack.Contracts.ISurvey;
 public class Survey<T> implements ISurvey<Object>{
  
 	@Id
-	private String Id;
+	private String email;
 	private String surveyName;
 	private List<Question<Object>> questions;
 	
-	public Survey(String surveyName, List<Question<Object>> questions) {
+	public Survey(String email, String surveyName, List<Question<Object>> questions) {
+		this.email = email;
 		this.surveyName = surveyName;
 		this.questions = questions;
 	}

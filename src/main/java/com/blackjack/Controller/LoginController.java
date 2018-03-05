@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/welcome")
+@RequestMapping("/login")
 public class LoginController {
 
 	@Autowired
