@@ -195,7 +195,6 @@
 	      $(".load-gif").addClass("show");
 	      
 	      return setTimeout((function() {
-	        toLogin();
 	        submitForm();
 	        $(".text-wrapper").addClass("show");
 	        
