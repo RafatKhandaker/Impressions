@@ -6,12 +6,14 @@
 	  signup = $(".sign-up");
 	  forget = $(".forget");
 	  submit = $('.button');
+	 
 	  emerald = "#19CC8B";
 	  red = "#BC3E48";
 	  yellow = "#B8B136";
 	  lightGrey = "#515866";
 	  darkGrey = "#2A2D33";
 
+	  
 	  toLogin = function() {
 	    $(".security").addClass("hide");
 	    $(".full-name, .retype").addClass("ani-hide");
@@ -20,14 +22,19 @@
 	    signup.removeClass("selected");
 	    emailVerify();
 	    forget.show();
-	    login.html("Login");
-	    return signup.html("Sign Up");
 	  };
 	  
+	  
 	  submitForm = function(){
-		  form.attr("action","/login/login");
-		  form.submit();
+		  if(login.hasClass('selected')){
+			  form.attr('action','/login/login');
+		  }
+		  if(signup.hasClass('selected')){
+			  form.attr('action', '/login/register')
+		  }
+		  return form.submit();
 	  };
+	  
 	  
 	  toSignup = function() {
 	    passwordSecure();
@@ -39,6 +46,7 @@
 	    login.html("Login");
 	    return signup.html("Sign Up");
 	  };
+	  
 
 	  toForget = function() {
 	    $(".full-name, .full-name div, .retype, .retype div, .password, .password div .forget").addClass("ani-hide");
@@ -50,6 +58,7 @@
 	    return signup.html("Back");
 	  };
 
+	  
 	  emailVerify = function() {
 	    var checkInterval, myInterval;
 	    if ($(".login").hasClass("selected")) {
@@ -71,6 +80,7 @@
 	    }
 	  };
 
+	  
 	  passwordSecure = function() {
 	    var checkInterval, myInterval;
 	    checkInterval = 0;
@@ -124,12 +134,14 @@
 	    }), 250);
 	  };
 
+	  
 	  login.click(function() {
 	    if (!login.hasClass("selected")) {
 	      return toLogin();
 	    }
 	  });
 
+	  
 	  signup.click(function() {
 	    if ($(".password").hasClass("ani-hide")) {
 	      return toLogin();
@@ -137,31 +149,48 @@
 	      return toSignup();
 	    }
 	  });
+	  
 
 	  submit.click(function() {
+		  var psw1 = $('#psw1');
+		  var psw2 = $('#psw2');
+		  
+		  if(signup.hasClass('selected') && psw1.val() != psw2.val()){
+			  psw1.val('');
+			  psw2.val('');
+			  $(".security").addClass("hide")
+			  return;
+		  }
+		  
 	      $(".text-wrapper").removeClass("show");
 	      $(".load-gif").addClass("show");
+	      
 	      return setTimeout((function() {
 	        toLogin();
 	        submitForm();
 	        $(".text-wrapper").addClass("show");
 	        return $(".load-gif").removeClass("show");
-	      }), 2500);
+	      }), 1500);
+	      
 	  });
+	  
 
 	  forget.click(function() {
 	    return toForget();
 	  });
 
+	  
 	  $(".password .content").click(function() {
 	    if ($(".sign-up").hasClass("selected")) {
 	      return passwordSecure();
 	    }
 	  });
+	  
 
 	  $(".email .content").click(() => {
 	    return emailVerify();
 	  });
+	  
 
 	}).call(this);
 

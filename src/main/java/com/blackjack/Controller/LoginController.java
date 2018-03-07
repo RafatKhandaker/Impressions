@@ -43,5 +43,18 @@ public class LoginController{
 		return viewResolver.getLogin();
 	}
 				
+	@PostMapping("/register")
+	public String postProfile(
+			@RequestParam("email") String email, 
+			@RequestParam("password") String password, 
+			@RequestParam("password2") String password2
+			) {
+		
+		if(dbService.checkLoginCred(email, password)) { 
+			return viewResolver.getAccountSettingsIndex(); 
+			};
+		
+		return viewResolver.getLogin();
+	}	
 		
 }
