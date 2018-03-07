@@ -29,12 +29,15 @@ public class LoginController{
 	
 	// profile 
 	@GetMapping("/login")
-	public String getProfile() {
+	public String getLogin() {
 		return viewResolver.getLogin();
 	}	
 		
 	@PostMapping("/login")
-	public String postProfile(@RequestParam("email") String email, @RequestParam("password") String password) {
+	public String submitLogin(
+			@RequestParam("email") String email, 
+			@RequestParam("password") String password
+			) {
 		
 		if(dbService.checkLoginCred(email, password)) { 
 			return viewResolver.getAccountSettingsIndex(); 
@@ -44,15 +47,11 @@ public class LoginController{
 	}
 				
 	@PostMapping("/register")
-	public String postProfile(
+	public String registerProfile(
 			@RequestParam("email") String email, 
-			@RequestParam("password") String password, 
-			@RequestParam("password2") String password2
+			@RequestParam("password") String password
 			) {
-		
-		if(dbService.checkLoginCred(email, password)) { 
-			return viewResolver.getAccountSettingsIndex(); 
-			};
+		/* Unimplemented method*/
 		
 		return viewResolver.getLogin();
 	}	
