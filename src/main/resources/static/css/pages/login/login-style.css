@@ -386,3 +386,16 @@ form {
 .text a:hover, .icons a:hover {
   color: #515866;
 }
+
+.validator{
+	color: #ff0000;
+	margin-top: -15%;
+    padding-bottom: 15px;
+}
+.display{
+	display: block;
+}
+
+.hide{
+	display: none;
+}
