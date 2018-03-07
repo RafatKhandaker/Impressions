@@ -15,6 +15,7 @@ import com.blackjack.Repository.QuestionsRepository;
 
 @Component
 public class DbSeeder implements CommandLineRunner {
+	
 	@Autowired
 	private QuestionsRepository qRepository;
 	@Autowired
