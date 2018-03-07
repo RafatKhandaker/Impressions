@@ -11,33 +11,49 @@
 		<link th:href="@{/css/pages/login/login-style.css}" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<h2>Modal Login Form</h2>
-		<button id="loginBtn" style="width:auto;">Login</button>
-		<div id="id01" class="modal">
-  			<form class="modal-content animate" method="post" action="/login/login">
-  			    <input type="hidden" name="${_csrf.parameterName}"value="${_csrf.token}"/>
-    				<div class="imgcontainer">
-      				<span class="close" title="Close Modal">&times;</span>
-      				<img src="img_avatar2.png" alt="Avatar" class="avatar">
+		<div class="container">
+  			<div class="modal-wrapper">
+    				<div class="profile-img">
+      				<div class="profile-add"></div>
     				</div>
-    				<div class="container">
-      				<label for="username"><b>Username</b></label>
-      				<input type="text" placeholder="Enter Username" name="username"  required>
-      				<label for="password"><b>Password</b></label>
-      				<input type="password" placeholder="Enter Password" name="password" required>
-        
-      				<button type="submit">Login</button>
-      				<label>
-        					<input type="checkbox" checked="checked" name="remember"> Remember me
-      				</label>
+    				<div class="load-gif">
+      				<div>Sending...</div>
     				</div>
-    				<div class="container" style="background-color:#f1f1f1">
-      				<button type="button" class="cancelbtn">Cancel</button>
-      				<span class="=">Forgot <a href="#">password?</a></span>
+    				<div class="text-wrapper show">
+      				<div class="nav">
+        					<div class="login">Login</div>
+        					<div class="sign-up selected">Sign Up</div>
+      				</div>
+      				<form class="form-class" method="post" >
+      				<div class="form email">
+        					<div class="form-title">Email</div>
+        					<input class="content" name="email"></input>
+      				</div>
+      				<div class="form password">
+        					<div class="security hide">
+          					<div class="security-type">
+            						<div class="security-level"><span class="secureValue"></span>%</div>
+            						<div class="secure">secure</div>
+          					</div>
+          					<div class="fill circle"></div>
+          					<div class="cover circle"></div>
+          					<div class="background circle"></div>
+        					</div>
+        					<div class="form-title">Password</div>
+        					<input type="password" class="content" name="password"></input>
+      				</div>
+      				<div class="form retype">
+        					<div class="form-title">Retype Password</div>
+        					<input type="password" class="content" name="password2"></input>
+      				</div>
+      				</form>
+      				<div class="button">Submit</div>
+      				<div class="forget">Forget your password?</div>
     				</div>
-  			</form>
+  			</div>
+  			<div class="overlay"></div>
 		</div>
-    <script th:src="@{/scripts/jquery/jquery.min.js}" defer></script>
-    <script th:src="@{/scripts/pages/login/login-script.js}" defer></script>
 	</body>
+	<script th:src="@{/scripts/jquery/jquery.min.js}" defer></script>
+    		<script th:src="@{/scripts/pages/login/login-script.js}" defer></script>
 </html>
