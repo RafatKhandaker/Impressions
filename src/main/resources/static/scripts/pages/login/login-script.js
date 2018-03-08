@@ -44,7 +44,6 @@
 	  
 	  
 	  toSignup = function() {
-	    passwordSecure();
 	    $(".full-name, .retype, .password").removeClass("ani-hide");
 	    
 	    validate.removeClass("display");
@@ -98,7 +97,7 @@
 	    				numChar = (/\d/);
 	    				alphaChar = (/[a-zA-Z]/);
 	    				
-	    			if (value.length > 0 && value.length < 4) { color = red; backFill = red;	}
+	    			if (value.length > 0 && value.length <= 4) { color = red; backFill = red;	}
 	    			else if (
 	    					value.length >= 5 && 
 	    					value.length < 7 && 
@@ -155,6 +154,7 @@
 	    			});
 	  });
 	  
+	  
 	  login.click(function() {
 	    if (!login.hasClass("selected")) {
 	      return toLogin();
@@ -208,18 +208,6 @@
 	    return toForget();
 	  });
 
-	  
-	  $(".password .content").click(function() {
-	    if ($(".sign-up").hasClass("selected")) {
-	      return passwordSecure();
-	    }
-	    return;
-	  });
-	  
-
-	  $(".email .content").click(() => {
-	    return emailVerify();
-	  });
 	}
 
 ).call(this);
