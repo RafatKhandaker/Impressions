@@ -1,5 +1,5 @@
 (function() {
-	  var darkGrey, emailVerify, orange, emerald, forget, lightGrey, login, passwordSecure, red, signup, submit, toForget, toLogin, toSignup, yellow, form, validate, pswfield;
+	  var darkGrey, emailVerify, orange, emerald, forget, lightGrey, login, passwordSecure, red, signup, submit, toForget, toLogin, toSignup, yellow, form, validate;
 
 	  form = $(".form-class");
 	  login = $(".login");
@@ -7,7 +7,6 @@
 	  forget = $(".forget");
 	  submit = $('.button');
 	  validate = $('.validator');
-	  pswfield = $('#psw1');
 
 	  emerald = "#19CC8B";
 	  red = "#BC3E48";
@@ -89,7 +88,7 @@
 	  });
 
 	  
-	  passwordSecure = pswfield.change(function() {
+	  passwordSecure = $('#psw1').change(function() {
 
 	    			var backFill, color, pie1, pieColor, secureVal, input, value, specChar, numChar, alphaChar;
 	    			
