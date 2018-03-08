@@ -15,7 +15,6 @@ public class AdminController {
 	@Autowired
 	ViewResolver viewResolver;
 	
-	// admin
 		@GetMapping("/home")
 		public String getSiteSettings() {			
 			return viewResolver.getSiteSettings();
