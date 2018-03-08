@@ -1,5 +1,6 @@
-(function() {
-	  var darkGrey, emailVerify, orange, emerald, forget, lightGrey, login, passwordSecure, red, signup, submit, toForget, toLogin, toSignup, yellow, form, validate;
+(
+	function() {
+	  var darkGrey, emailVerify, orange, emerald, forget, lightGrey, login, passwordSecure, red, signup, submit, toForget, toLogin, pswSec,toSignup, yellow, form, validate;
 
 	  form = $(".form-class");
 	  login = $(".login");
@@ -7,6 +8,7 @@
 	  forget = $(".forget");
 	  submit = $('.button');
 	  validate = $('.validator');
+	  pswSec = $('.security');
 
 	  emerald = "#19CC8B";
 	  red = "#BC3E48";
@@ -17,7 +19,7 @@
 
 	  
 	  toLogin = function() {
-	    $(".security").addClass("hide");
+		pswSec.addClass("hide");
 	    $(".full-name, .retype").addClass("ani-hide");
 	    $(".password, .password div").removeClass("ani-hide");
 	    
@@ -33,17 +35,21 @@
 	  
 	  
 	  submitForm = function(){
-		  if(login.hasClass('selected')){
-			  form.attr('action','/login/login');
-		  }
-		  if(signup.hasClass('selected')){
-			  form.attr('action', '/login/register');
-		  }
+		  if(validate.hasClass("display") || ( $('#usr').is(':empty') || $('#psw1').is(':empty')) ){ 
+			  validate.addClass("display");
+			  validate.text("invalid email or password"); 
+			  return; 
+			  }
+		  else{ validate.addClass("hide"); validate.removeClass("display"); }
+		  if(login.hasClass('selected')){ form.attr('action','/login/login'); }
+		  if(signup.hasClass('selected')){ form.attr('action', '/login/register'); }
+		  
 		  return form.submit();
 	  };
 	  
 	  
 	  toSignup = function() {
+		  
 	    $(".full-name, .retype, .password").removeClass("ani-hide");
 	    
 	    validate.removeClass("display");
@@ -54,36 +60,40 @@
 	    emailVerify();
 	    forget.hide();
 	    login.html("Login");
+	    
 	    return signup.html("Sign Up");
 	  };
 	  
 
 	  toForget = function() {
 	    $(".full-name, .full-name div, .retype, .retype div, .password, .password div .forget").addClass("ani-hide");
+	   
 	    signup.removeClass("selected");
 	    login.addClass("selected");
 	    emailVerify();
 	    forget.hide();
 	    login.html("Reset Password");
+	    
 	    return signup.html("Back");
 	  };
 
 	  
 	  emailVerify = $('#usr').change(function() {
+		  
+	    var usr = $('#usr');
 	    
-	    if ($(".login").hasClass("selected")) {
-	     
-	        if ($(".email .content").val().length >= 18) {
-	          
-	         	$(".profile-img").addClass("profile-pic");
-	         	$(".profile-add").hide(); 
-	        
-	        return checkInterval++;
-	      };
-	    } else {
-	      $(".profile-add").show();
-	      return $(".profile-img").removeClass("profile-pic");
-	    }
+	    if( !(usr.val().endsWith(".com") && usr.val().includes("@")) ){
+	    	
+	    	  	  validate.text('* email invalid *');
+			  validate.removeClass("hide");
+			  validate.addClass("display");
+			  
+	    }else{
+	    	
+	    		  validate.removeClass("display");
+			  validate.addClass("hide");
+	    };
+	   
 	  });
 
 	  
@@ -124,7 +134,7 @@
 	    				backFill = emerald; 
 	    				}
 	    			
-	    			if ( value.length > 0) { $(".security").removeClass("hide"); } else { $(".security").addClass("hide"); }
+	    			if ( value.length > 0) { pswSec.removeClass("hide"); } else { pswSec.addClass("hide"); }
 	    			
 	    			secureVal = value.length * 9;
 	    			if (secureVal >= 100) { secureVal = 100; }
@@ -140,7 +150,8 @@
 	    				secureVal = 90;
 	    				pie1 = 270;
 	    			}
-	    			
+	    			validate.removeClass("display");
+	    			validate.addClass("hide");
 	    			$(".secureValue").html(secureVal);
 	    			$(".password .content, .password .security-type").css("color", `${color}`);
 	    			$(".circle.background").css("background", `${backFill}`);
@@ -186,10 +197,10 @@
 			  validate.text('* password mismatch *');
 			  validate.removeClass("hide");
 			  validate.addClass("display");
+			  pswSec.addClass("hide");
 			  return;
 		  }
-		  validate.addClass("hide");
-		  validate.removeClass("display");
+		  
 	      $(".text-wrapper").removeClass("show");
 	      $(".load-gif").addClass("show");
 	      
