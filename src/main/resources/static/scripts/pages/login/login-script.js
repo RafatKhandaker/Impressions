@@ -18,54 +18,52 @@
 	  orange = "#FFA500";
 
 	  
-	  toLogin = function() {
+	  function toLogin() {
 		pswSec.addClass("hide");
-	    $(".full-name, .retype").addClass("ani-hide");
-	    $(".password, .password div").removeClass("ani-hide");
+	    $(".retype").addClass("ani-hide");
 	    
 	    login.addClass("selected");
 	    
-	    validate.removeClass("display");
-	    validate.addClass("hide");
+	    hideValidMsg();
 
 	    signup.removeClass("selected");
-	    emailVerify();
 	    forget.show();
+	    
+	    return;
 	  };
 	  
 	  
-	  submitForm = function(){
+	  function toSignup() {
+		  
+		    $(".retype").removeClass("ani-hide");
+		    
+		    hideValidMsg();
+		    
+		    signup.addClass("selected");
+		    login.removeClass("selected");
+		    
+		    forget.hide();
+		     
+		    login.html("Login");
+		    
+		    return signup.html("Sign Up");
+		  };
+	  
+	  function submitForm(){
 		  if(validate.hasClass("display") || ( $('#usr').is(':empty') || $('#psw1').is(':empty')) ){ 
-			  validate.addClass("display");
-			  validate.text("invalid email or password"); 
-			  return; 
+			   showValidMsg("invalid email or password");
+			   return;
 			  }
-		  else{ validate.addClass("hide"); validate.removeClass("display"); }
+		  else{ hideValidMsg(); }
+		  
 		  if(login.hasClass('selected')){ form.attr('action','/login/login'); }
 		  if(signup.hasClass('selected')){ form.attr('action', '/login/register'); }
 		  
 		  return form.submit();
 	  };
 	  
-	  
-	  toSignup = function() {
-		  
-	    $(".full-name, .retype, .password").removeClass("ani-hide");
-	    
-	    validate.removeClass("display");
-	    validate.addClass("hide");
 
-	    signup.addClass("selected");
-	    login.removeClass("selected");
-	    emailVerify();
-	    forget.hide();
-	    login.html("Login");
-	    
-	    return signup.html("Sign Up");
-	  };
-	  
-
-	  toForget = function() {
+	  function toForget() {
 	    $(".full-name, .full-name div, .retype, .retype div, .password, .password div .forget").addClass("ani-hide");
 	   
 	    signup.removeClass("selected");
@@ -78,26 +76,34 @@
 	  };
 
 	  
+	  function hideValidMsg(){
+		  if( !validate.hasClass('hide') ){
+			  validate.addClass("hide");
+		  }
+		  return;
+	  };
+	  
+	  
+	  function showValidMsg(message){
+		  if( validate.hasClass('hide') ){
+			  validate.removeClass("hide");
+		  }
+		  validate.text(message);
+		  return;
+	  };
+	  
 	  emailVerify = $('#usr').change(function() {
 		  
 	    var usr = $('#usr');
 	    
-	    if( !(usr.val().endsWith(".com") && usr.val().includes("@")) ){
-	    	
-	    	  	  validate.text('* email invalid *');
-			  validate.removeClass("hide");
-			  validate.addClass("display");
-			  
-	    }else{
-	    	
-	    		  validate.removeClass("display");
-			  validate.addClass("hide");
-	    };
+	    if( !(usr.val().endsWith(".com") && usr.val().includes("@")) ){ showValidMsg('* email invalid *'); }
+	    else if( !validate.hasClass('hide') ){ hideValidMsg(); }
 	   
+	    return;
 	  });
 
 	  
-	  passwordSecure = $('#psw1').change(function() {
+	  passwordSecure = $('#psw1').change(function() {	
 
 	    			var backFill, color, pie1, pieColor, secureVal, input, value, specChar, numChar, alphaChar;
 	    			
@@ -107,37 +113,18 @@
 	    				numChar = (/\d/);
 	    				alphaChar = (/[a-zA-Z]/);
 	    				
-	    			if (value.length > 0 && value.length <= 4) { color = red; backFill = red;	}
-	    			else if (
-	    					value.length >= 5 && 
-	    					value.length < 7 && 
-	    					alphaChar.test(value)
-	    					) {
-	    				color = orange; 
-	    				backFill = orange;
-	    				} 
-	    			else if (
-	    					value.length >= 6 && 
-	    					value.length < 8 && 
-	    					(alphaChar.test(value) && numChar.test(value)) 
-	    					) {
-	    				color = yellow; 
-	    				backFill = yellow;
-	    				} 
-	    			else if (
-	    					value.length >= 8 && 
-	    					alphaChar.test(value) && 
-	    					numChar.test(value) && 
-	    					!specChar.test(value)
-	    					) { 
-	    				color = emerald; 
-	    				backFill = emerald; 
-	    				}
-	    			
-	    			if ( value.length > 0) { pswSec.removeClass("hide"); } else { pswSec.addClass("hide"); }
-	    			
+		    			hideValidMsg();
+		    			
+		    			if ( !(value.length > 0) ) { pswSec.addClass("hide"); } else { pswSec.removeClass("hide"); }
+	    				
+	    			if (value.length > 0) { color = red; backFill = red;	}
+	    			if ( value.length >= 5 && alphaChar.test(value) && !(alphaChar.test(value) && numChar.test(value)) && specChar.test(value) ) { color = orange; backFill = orange; } 
+	    		    if ( value.length >= 6 && ((alphaChar.test(value) && numChar.test(value)) || !specChar.test(value)) ) { color = yellow; backFill = yellow; } 
+	    		    if ( value.length >= 8 && alphaChar.test(value) && numChar.test(value) && !specChar.test(value) ) { color = emerald; backFill = emerald; }
+	    			    			
 	    			secureVal = value.length * 9;
 	    			if (secureVal >= 100) { secureVal = 100; }
+	    			
 	    			if (value.length <= 5) {
 	    				pie1 = (value.length * 36) + 90;
 	    				pieColor = lightGrey;
@@ -150,37 +137,33 @@
 	    				secureVal = 90;
 	    				pie1 = 270;
 	    			}
-	    			validate.removeClass("display");
-	    			validate.addClass("hide");
+	    				    			
 	    			$(".secureValue").html(secureVal);
 	    			$(".password .content, .password .security-type").css("color", `${color}`);
 	    			$(".circle.background").css("background", `${backFill}`);
 	    			$(".password .fill").css({
-	    				background: `linear-gradient(${pie1}deg, transparent 50%, ${pieColor} 50%), linear-gradient(90deg, ${lightGrey} 50%, transparent 50%)`
+	    				background: `linear-gradient(${pie1}deg, transparent 50%, ${pieColor} 100%), linear-gradient(90deg, ${lightGrey} 50%, transparent 50%)`
 	    			});
 	    			
 	    			login.click(function() {
 	    				$(".password .content").css("color", "#fff");
 	    				return;
 	    			});
+	    			
+	    		return;
 	  });
 	  
 	  
 	  login.click(function() {
-	    if (!login.hasClass("selected")) {
-	      return toLogin();
-	    }
+	    if (!login.hasClass("selected")) { return toLogin(); }
+	    return;
 	  });
 
 	  
 	  signup.click(function() {
-		if ($(".password").hasClass("ani-hide")) {
-	      return toLogin();
-	    } 
-	    
-	    if (!signup.hasClass("selected")) {
-	      return toSignup();
-	    }
+		if($(".password").hasClass("ani-hide")) { return toLogin(); } 
+	    if (!signup.hasClass("selected")) { return toSignup(); }
+	    return;
 	  });
 	  
 
@@ -194,18 +177,19 @@
 			  
 			  $(".se	curity").addClass("hide");
 			  
-			  validate.text('* password mismatch *');
-			  validate.removeClass("hide");
-			  validate.addClass("display");
+			  showValidMsg('* password mismatch *');
 			  pswSec.addClass("hide");
 			  return;
-		  }
+			  
+		  }else{ validate.removeClass('display');  validate.addClass('hide'); }
 		  
 	      $(".text-wrapper").removeClass("show");
 	      $(".load-gif").addClass("show");
 	      
 	      return setTimeout((function() {
-	        submitForm();
+	        
+	    	  	submitForm();
+	        
 	        $(".text-wrapper").addClass("show");
 	        
 	        return $(".load-gif").removeClass("show");
@@ -213,12 +197,11 @@
 	      }), 1500);
 	      
 	  });
-	  
 
 	  forget.click(function() {
 	    return toForget();
 	  });
-
+	 
 	}
 
 ).call(this);
