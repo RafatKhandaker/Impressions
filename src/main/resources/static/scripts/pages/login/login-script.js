@@ -1,56 +1,41 @@
 (
 	function() {
-	  var darkGrey, emailVerify, orange, emerald, forget, lightGrey, login, passwordSecure, red, signup, submit, toForget, toLogin, pswSec,toSignup, yellow, form, validate;
 
-	  form = $(".form-class");
-	  login = $(".login");
-	  signup = $(".sign-up");
-	  forget = $(".forget");
-	  submit = $('.button');
-	  validate = $('.validator');
-	  pswSec = $('.security');
+	  var form = $(".form-class");
+	  var login = $(".login");
+	  var signup = $(".sign-up");
+	  var forget = $(".forget");
+	  var submit = $('.button');
+	  var validate = $('.validator');
+	  var pswSec = $('.security');
+	  var reType = $('.retype');
 
-	  emerald = "#19CC8B";
-	  red = "#BC3E48";
-	  yellow = "#B8B136";
-	  lightGrey = "#515866";
-	  darkGrey = "#2A2D33";
-	  orange = "#FFA500";
+	  var emerald = "#19CC8B", red = "#BC3E48", yellow = "#B8B136", lightGrey = "#515866", darkGrey = "#2A2D33", orange = "#FFA500";
 
 	  
 	  function toLogin() {
+		hideValidMsg();
 		pswSec.addClass("hide");
-	    $(".retype").addClass("ani-hide");
-	    
+	    reType.addClass("ani-hide");	    
 	    login.addClass("selected");
-	    
-	    hideValidMsg();
-
 	    signup.removeClass("selected");
-	    forget.show();
-	    
+	    forget.show();	    
 	    return;
 	  };
 	  
 	  
-	  function toSignup() {
-		  
-		    $(".retype").removeClass("ani-hide");
-		    
+	  function toSignup() {		  
+		    retype.removeClass("ani-hide");		    
 		    hideValidMsg();
-		    
 		    signup.addClass("selected");
-		    login.removeClass("selected");
-		    
-		    forget.hide();
-		     
+		    login.removeClass("selected");		    
+		    forget.hide();		     
 		    login.html("Login");
-		    
 		    return signup.html("Sign Up");
 		  };
 	  
 	  function submitForm(){
-		  if(validate.hasClass("display") || ( $('#usr').is(':empty') || $('#psw1').is(':empty')) ){ 
+		  if(!	validate.hasClass("hide") || ( $('#usr').val().length >= 6 || $('#psw1').val().length >= 6) ){ 
 			   showValidMsg("invalid email or password");
 			   return;
 			  }
@@ -80,6 +65,7 @@
 		  if( !validate.hasClass('hide') ){
 			  validate.addClass("hide");
 		  }
+		  validate.empty();
 		  return;
 	  };
 	  
@@ -90,6 +76,29 @@
 		  }
 		  validate.text(message);
 		  return;
+	  };
+	  
+	  passComplexity = function(color, value){
+			var specChar = (/^[a-zA-Z0-9- ]*$/);
+			var numChar = (/\d/);
+			var alphaChar = (/[a-zA-Z]/);
+			
+		switch(color){
+			case "red":
+				if( value.length > 0 ){ return true; }
+				return false;
+			case "orange":
+			  if( value.length >= 5 && alphaChar.test(value) && (numChar.test(value) ) && specChar.test(value) ){ return true; }
+				return false;
+			
+			case "yellow":
+			  if( value.length >= 6 && ((alphaChar.test(value) && numChar.test(value)) || !specChar.test(value)) ){ return true; }
+				return false; 
+				
+			case "green":
+			  if( value.length >= 8 && alphaChar.test(value) && numChar.test(value) && !specChar.test(value) ){ return true; }
+				return false; 	
+			}  
 	  };
 	  
 	  emailVerify = $('#usr').change(function() {
@@ -104,44 +113,47 @@
 
 	  
 	  passwordSecure = $('#psw1').change(function() {	
-
-	    			var backFill, color, pie1, pieColor, secureVal, input, value, specChar, numChar, alphaChar;
-	    			
-	    				input =$(".password .content");
-	    				value = input.val();
-	    				specChar = (/^[a-zA-Z0-9- ]*$/);
-	    				numChar = (/\d/);
-	    				alphaChar = (/[a-zA-Z]/);
+		  var backFill, color, pie1, pieColor, secureVal, input, value;
+	    		  input =$(".password .content");
+	    		  value = input.val();
+	    		  
+	    		  
+	      var secVal = $(".secureValue");
+	    	  var passCont = $(".password .content, .password .security-type");
+	    	  var circBak = $(".circle.background");
+	    	  var passFill = $(".password .fill");
 	    				
-		    			hideValidMsg();
-		    			
-		    			if ( !(value.length > 0) ) { pswSec.addClass("hide"); } else { pswSec.removeClass("hide"); }
+		    		if( !validate.text().includes('* email invalid *') ){ hideValidMsg(); } 			
+		    	    if ( !(value.length > 0) ) { pswSec.addClass("hide"); } else { pswSec.removeClass("hide"); }
 	    				
-	    			if (value.length > 0) { color = red; backFill = red;	}
-	    			if ( value.length >= 5 && alphaChar.test(value) && !(alphaChar.test(value) && numChar.test(value)) && specChar.test(value) ) { color = orange; backFill = orange; } 
-	    		    if ( value.length >= 6 && ((alphaChar.test(value) && numChar.test(value)) || !specChar.test(value)) ) { color = yellow; backFill = yellow; } 
-	    		    if ( value.length >= 8 && alphaChar.test(value) && numChar.test(value) && !specChar.test(value) ) { color = emerald; backFill = emerald; }
-	    			    			
-	    			secureVal = value.length * 9;
-	    			if (secureVal >= 100) { secureVal = 100; }
-	    			
+	    			if ( passComplexity("red", value) ) { color = red; backFill = red;	}
+	    			if ( passComplexity("orange", value) ) { color = orange; backFill = orange; } 
+	    		    if ( passComplexity("yellow", value) ) { color = yellow; backFill = yellow; } 
+	    		    if ( passComplexity("green", value) ) { color = emerald; backFill = emerald; }
+	    			    				    			
 	    			if (value.length <= 5) {
+		    		    secVal.html(value.length * 9);
 	    				pie1 = (value.length * 36) + 90;
 	    				pieColor = lightGrey;
 	    				
 	    			} else if (value.length >= 5 && value.length <= 9) {
+		    		    secVal.html(value.length * 9);
 	    				pieColor = color;
 	    				pie1 = (value.length * 36) - 90;
 	    				
-	    			} else {
-	    				secureVal = 90;
+	    			} else{
+	    				if( passComplexity("green", value) ){ secVal.html(99); pie1 = 360; }else{
+	    				secVal.html(90);
 	    				pie1 = 270;
-	    			}
-	    				    			
-	    			$(".secureValue").html(secureVal);
-	    			$(".password .content, .password .security-type").css("color", `${color}`);
-	    			$(".circle.background").css("background", `${backFill}`);
-	    			$(".password .fill").css({
+	    				}
+	    			} 
+	    			
+	    			passCont.css("color","");
+	    			circBak.css("color", "");
+	    			
+	    			passCont.css("color", `${color}`);
+	    			circBak.css("background", `${backFill}`);
+	    			passFill.css({
 	    				background: `linear-gradient(${pie1}deg, transparent 50%, ${pieColor} 100%), linear-gradient(90deg, ${lightGrey} 50%, transparent 50%)`
 	    			});
 	    			
@@ -180,8 +192,7 @@
 			  showValidMsg('* password mismatch *');
 			  pswSec.addClass("hide");
 			  return;
-			  
-		  }else{ validate.removeClass('display');  validate.addClass('hide'); }
+		  }
 		  
 	      $(".text-wrapper").removeClass("show");
 	      $(".load-gif").addClass("show");
