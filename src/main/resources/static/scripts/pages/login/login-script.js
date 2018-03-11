@@ -9,12 +9,13 @@
 	  var validate = $('.validator');
 	  var pswSec = $('.security');
 	  var reType = $('.retype');
-
+	  var profileBtn = $('.profile-add');
+	  
 	  var emerald = "#19CC8B", red = "#BC3E48", yellow = "#B8B136", lightGrey = "#515866", darkGrey = "#2A2D33", orange = "#FFA500";
 
-	  
 	  function toLogin() {
 		hideValidMsg();
+		profileBtn.addClass('hide');
 		pswSec.addClass("hide");
 	    reType.addClass("ani-hide");	    
 	    login.addClass("selected");
@@ -24,12 +25,13 @@
 	  };
 	  
 	  
-	  function toSignup() {		  
-		    reType.removeClass("ani-hide");		    
+	  function toSignup() {	
 		    hideValidMsg();
+		    profileBtn.removeClass('hide');
+		    reType.removeClass("ani-hide");			    
 		    signup.addClass("selected");
-		    login.removeClass("selected");		    
-		    forget.addClass('hide');		     
+		    login.removeClass("selected");			    
+		    forget.addClass('hide');		   	    
 		    login.html("Login");
 		    return signup.html("Sign Up");
 		  };
@@ -113,6 +115,9 @@
 
 	  
 	  passwordSecure = $('#psw1').change(function() {	
+		  
+		  if( login.hasClass('selected') ){ return; }
+		  
 		  var backFill, color, pie1, pieColor, secureVal, input, value;
 	    		  input =$(".password .content");
 	    		  value = input.val();
