@@ -19,23 +19,23 @@
 	    reType.addClass("ani-hide");	    
 	    login.addClass("selected");
 	    signup.removeClass("selected");
-	    forget.show();	    
+	    forget.removeClass('hide');	    
 	    return;
 	  };
 	  
 	  
 	  function toSignup() {		  
-		    retype.removeClass("ani-hide");		    
+		    reType.removeClass("ani-hide");		    
 		    hideValidMsg();
 		    signup.addClass("selected");
 		    login.removeClass("selected");		    
-		    forget.hide();		     
+		    forget.addClass('hide');		     
 		    login.html("Login");
 		    return signup.html("Sign Up");
 		  };
 	  
 	  function submitForm(){
-		  if(!	validate.hasClass("hide") || ( $('#usr').val().length >= 6 || $('#psw1').val().length >= 6) ){ 
+		  if( validate.hasClass("hide") || ( $('#usr').val().length < 6 || $('#psw1').val().length < 6) ){ 
 			   showValidMsg("invalid email or password");
 			   return;
 			  }

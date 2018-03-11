@@ -4,5 +4,5 @@ import com.blackjack.Model.ErrorLog;
 
 public interface ILogger {
 
-	void insertLoginError(ErrorLog log);
+	void insertError(ErrorLog log);
 }

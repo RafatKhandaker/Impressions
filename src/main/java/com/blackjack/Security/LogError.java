@@ -17,7 +17,7 @@ public class LogError implements ILogger {
 	}
 
 	@Override
-	public void insertLoginError(ErrorLog log) {
+	public void insertError(ErrorLog log) {
 		this.eLogRepo.insert(log);
 	}
 

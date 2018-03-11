@@ -1,5 +1,6 @@
 package com.blackjack.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,8 +69,18 @@ public class DBService<T> implements IDBService {
 	public boolean checkLoginCred(String email, String pass) {
 		
 		try { return pass.equals( this.authRepo.findByEmail(email).getPassword()); }
-		catch(Exception e) { eLog.insertLoginError( new ErrorLog(email , pass, e) ); }
+		catch(Exception e) { eLog.insertError( new ErrorLog(email , pass, e) ); }
 		
 		return false;
+	}
+
+	public void insertNewAccount(String email, String pass) {
+		List<Authentication> newAuthentication = Arrays.asList(
+				new Authentication(
+						email, pass, false
+						)
+				);
+		try { this.authRepo.save(newAuthentication); }
+		catch(Exception e ) { eLog.insertError(new ErrorLog( email, pass, e) ); }		
 	}
 }

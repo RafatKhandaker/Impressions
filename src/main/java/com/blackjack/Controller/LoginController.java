@@ -51,7 +51,11 @@ public class LoginController{
 			@RequestParam("email") String email, 
 			@RequestParam("password") String password
 			) {
-		/* Unimplemented method*/
+		
+		if(!dbService.checkLoginCred(email, password)) {  
+			dbService.insertNewAccount(email, password);
+			return viewResolver.getLogin(); 
+			}
 		
 		return viewResolver.getLogin();
 	}	
