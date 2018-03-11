@@ -35,7 +35,7 @@
 		  };
 	  
 	  function submitForm(){
-		  if( validate.hasClass("hide") || ( $('#usr').val().length < 6 || $('#psw1').val().length < 6) ){ 
+		  if( !validate.hasClass("hide") || ( $('#usr').val().length < 6 || $('#psw1').val().length < 6) ){ 
 			   showValidMsg("invalid email or password");
 			   return;
 			  }
