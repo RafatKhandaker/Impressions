@@ -3,6 +3,7 @@ package com.blackjack.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.blackjack.Contracts.IDBService;
+import com.blackjack.properties.ConfigProperties;
 import com.blackjack.properties.ViewResolver;
 
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
@@ -22,6 +22,8 @@ public class LoginController{
 	ViewResolver viewResolver;
 	@Autowired
 	IDBService dbService;
+	@Autowired
+	ConfigProperties configProp;
 	
 	// index 
 	@GetMapping("/index")
@@ -45,7 +47,7 @@ public class LoginController{
 			return viewResolver.getAccountSettingsIndex(); 
 			};
 		
-		model.addAttribute("message", "** Invalid Login **");
+		model.addAttribute("message", configProp.getLoginMsg() );
 		return viewResolver.getLogin();
 	}
 				
@@ -59,7 +61,7 @@ public class LoginController{
 			dbService.insertNewAccount(email, password);
 			return viewResolver.getLogin(); 
 			}
-		model.addAttribute("message", "Check Email to Activate Account");
+		model.addAttribute("message", configProp.getRegisterMsg());
 		return viewResolver.getLogin();
 	}	
 		

@@ -27,6 +27,7 @@ public class AppSec extends WebSecurityConfigurerAdapter{
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    	// Testing
         auth
             .inMemoryAuthentication()
                 .withUser("user").password("password").roles("USER");
