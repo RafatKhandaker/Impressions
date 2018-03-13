@@ -1,7 +1,8 @@
 package com.blackjack.AppStart;
 
+import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Arrays;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class DbSeeder implements CommandLineRunner {
 		// reset database on start
 		this.qRepository.deleteAll();
 		this.authRepository.deleteAll();
+		
 		//Add Object to DB
 		populateQuestions();
 		populateAuthentications();
@@ -44,9 +46,13 @@ public class DbSeeder implements CommandLineRunner {
 	}
 	
 	private void populateAuthentications() {
+		List<String> permissions = new ArrayList<String>();
+		permissions.add("user");
+		permissions.add("admin");
+		
 		List<Authentication> testAuthentication = Arrays.asList(
 				new Authentication(
-						"test@email.com", "testpassword" , false
+						"test@email.com", "testpassword" , false, permissions
 						)
 				);
 		this.authRepository.save(testAuthentication);
