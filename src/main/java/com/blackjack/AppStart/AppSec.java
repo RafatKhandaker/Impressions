@@ -11,9 +11,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.blackjack.Security.PageSecurity;
 
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class AppSec extends WebSecurityConfigurerAdapter{
 	
 	@Autowired

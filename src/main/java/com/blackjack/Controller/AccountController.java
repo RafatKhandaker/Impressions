@@ -1,7 +1,7 @@
 package com.blackjack.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +11,7 @@ import com.blackjack.properties.ViewResolver;
 
 @Controller
 @RequestMapping("/account")
+@Secured({"ROLE_USER"})
 public class AccountController  {
 	
 	@Autowired
@@ -39,7 +40,6 @@ public class AccountController  {
 		return viewResolver.getProfile();
 	}
 		
-//	@PreAuthorize("hasAnyRole('user')")
 	@GetMapping("/settings/index")
 	public String getSettingsIndex() {
 		return viewResolver.getAccountSettingsIndex();
