@@ -11,20 +11,16 @@ import com.blackjack.Contracts.IAppSecurity;
 public class PageSecurity implements IAppSecurity{
 	
 	private HttpSecurity http;
-	private List<String> openPages = new ArrayList<>();
+	private List<String> securePages = new ArrayList<>();
 	private String logPage;
 	private String resFolder;
 	
 	public PageSecurity(HttpSecurity http){
 		this.http = http;	
-		this.openPages.addAll(
+		this.securePages.addAll(
 				Arrays.asList(
-						"/",
-						"/welcome",
-						"/account/**",
-						"/resources/static/**",
-						"/login/login",
-						"/account/settings/index"
+						"/admin/**",
+						"/account/settings/**"
 						)
 				);
 		this.logPage = "/login/login";
@@ -36,11 +32,8 @@ public class PageSecurity implements IAppSecurity{
 		
 		this.http.authorizeRequests()
 			.antMatchers(
-				//	this.openPages.get(1)
-					this.openPages.get(2)
-				//	this.openPages.get(3), 
-				//	this.openPages.get(4)
-				//	this.openPages.get(5)
+					this.securePages.get(0),
+					this.securePages.get(1)
 					)
 			.authenticated()
 				.and()

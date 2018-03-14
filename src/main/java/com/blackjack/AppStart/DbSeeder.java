@@ -1,7 +1,5 @@
 package com.blackjack.AppStart;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,14 +43,10 @@ public class DbSeeder implements CommandLineRunner {
 		this.qRepository.save(testQuestions);
 	}
 	
-	private void populateAuthentications() {
-		List<String> permissions = new ArrayList<String>();
-		permissions.add("user");
-		permissions.add("admin");
-		
+	private void populateAuthentications() {		
 		List<Authentication> testAuthentication = Arrays.asList(
 				new Authentication(
-						"test@email.com", "testpassword" , false, permissions
+						"test@email.com", "testpassword" , false, new String[] {"USER", "ADMIN"}
 						)
 				);
 		this.authRepository.save(testAuthentication);

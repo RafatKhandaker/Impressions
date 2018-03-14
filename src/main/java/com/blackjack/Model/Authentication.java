@@ -1,7 +1,6 @@
 package com.blackjack.Model;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -29,32 +28,24 @@ public class Authentication implements IAuthentication, UserDetails{
 	
 	public Authentication() {};
 	
-	public <T> Authentication(
+	public Authentication(
 			String email, 
 			String password, 
 			boolean isActive, 
-			List<T> authorities
+			String[] authorities
 			) {
 		
 		this.email = email;
 		this.password = password;
 		this.isActive = isActive;
 	//	this.lastLogin = new Timestamp(System.currentTimeMillis());
-		this.grantedAuthorities = AuthorityUtils.createAuthorityList(
-				authorities.toArray( 
-						new String [authorities.size()]
-								)
-				);
+		this.grantedAuthorities = AuthorityUtils.createAuthorityList(authorities);
 	}
 	
-	public <T> Authentication(String email, String password, List<T> authorities) {
+	public Authentication(String email, String password, String[] authorities) {
 		this.email = email;
 		this.password = password;
-		this.grantedAuthorities = AuthorityUtils.createAuthorityList(
-				authorities.toArray( 
-						new String [authorities.size()]
-								)
-				);
+		this.grantedAuthorities = AuthorityUtils.createAuthorityList(authorities);
 	}
 	
 	public Authentication(String email, String password, boolean isActive) {
@@ -114,12 +105,6 @@ public class Authentication implements IAuthentication, UserDetails{
 	@Override
 	public boolean isEnabled() {
 		return true;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public  <T> List<T> getAuthorization() {
-		return (List<T>) this.grantedAuthorities;
 	}
 
 }

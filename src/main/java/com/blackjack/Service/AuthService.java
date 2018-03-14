@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.blackjack.Contracts.IDBService;
-import com.blackjack.Model.Authentication;
 
 @Component
 public class AuthService implements UserDetailsService{
@@ -18,14 +17,8 @@ public class AuthService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Authentication authModel = dbService.pullUserAccount(email);
-		
-		return new Authentication(
-				authModel.getUsername(), 
-				authModel.getPassword(), 
-				authModel.getAuthorization()
-				);
-				
+		 return dbService.pullUserAccount(email);
+					
 	}
 
 }

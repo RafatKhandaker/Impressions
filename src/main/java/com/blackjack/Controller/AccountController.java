@@ -39,7 +39,7 @@ public class AccountController  {
 		return viewResolver.getProfile();
 	}
 		
-	@PreAuthorize("hasAnyRole('user')")
+//	@PreAuthorize("hasAnyRole('user')")
 	@GetMapping("/settings/index")
 	public String getSettingsIndex() {
 		return viewResolver.getAccountSettingsIndex();

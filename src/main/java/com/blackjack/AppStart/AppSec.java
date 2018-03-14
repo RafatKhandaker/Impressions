@@ -35,10 +35,4 @@ public class AppSec extends WebSecurityConfigurerAdapter{
 	// authSec.enableCSRFProtection();
 	
     }
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    	// Testing
-		auth.userDetailsService(this.authService);
-    }
 }
