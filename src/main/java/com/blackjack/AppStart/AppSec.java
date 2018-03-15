@@ -19,12 +19,14 @@ public class AppSec extends WebSecurityConfigurerAdapter{
 	@Autowired
 	UserDetailsService authService;
 	
+	private PageSecurity authSec;
+
+	
 	@Override		
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(this.authService);
 	}
 
-	private PageSecurity authSec;
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception{

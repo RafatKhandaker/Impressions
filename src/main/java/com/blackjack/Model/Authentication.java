@@ -61,7 +61,6 @@ public class Authentication implements IAuthentication, UserDetails{
 	
 	@Override
 	public Timestamp dateCreated() {
-		// TODO Auto-generated method stub
 		return this.dateCreated;
 	}
 
