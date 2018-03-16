@@ -69,6 +69,8 @@ Spring Security
 
 https://spring.io/guides/gs/securing-web/
 
+http://www.baeldung.com/spring-security-session
+
 
 ### Who do I talk to? ###
 
