@@ -38,22 +38,13 @@ public class LoginController{
 	}	
 		
 	@PostMapping("/login")
-	public String submitLogin(Model model,
-			@RequestParam("email") String email, 
-			@RequestParam("password") String password
-			) {
-		
-		if(dbService.checkLoginCred(email, password)) { 
-			return viewResolver.getAccountSettingsIndex(); 
-			};
-		
-		model.addAttribute("message", configProp.getLoginMsg() );
-		return viewResolver.getLogin();
+	public String submitLogin() {
+		return viewResolver.getAccountSettingsIndex(); 
 	}
 				
 	@PostMapping("/register")
 	public String registerProfile(Model model,
-			@RequestParam("email") String email, 
+			@RequestParam("username") String email, 
 			@RequestParam("password") String password
 			) {
 		

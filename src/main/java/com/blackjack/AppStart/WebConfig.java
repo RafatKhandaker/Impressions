@@ -15,7 +15,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
                 "/webjars/**",
                 "/images/**",
                 "/css/**",
-                "/scripts/**",
+                "/scripts/**",	
                 "/pdfs/**"
                 )
                 .addResourceLocations(

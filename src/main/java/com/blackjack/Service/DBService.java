@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +25,7 @@ import com.blackjack.Repository.UserProfilesRepository;
 
 @SuppressWarnings("unused")
 @Component
-public class DBService<T> implements IDBService {
+public class DBService<T> implements IDBService 	{
 
 	@Autowired
 	private AuthenticationRepository authRepo;
@@ -62,7 +63,12 @@ public class DBService<T> implements IDBService {
 
 	@Override
 	public boolean isAuthenticated() {
-		return this.authentication.getIsActive();
+		return this.authentication.isActive();
+	}
+	
+	@Override
+	public Authentication pullUserAccount(String email) {
+		return this.authRepo.findByEmail(email);
 	}
 
 	@Override
@@ -83,4 +89,5 @@ public class DBService<T> implements IDBService {
 		try { this.authRepo.save(newAuthentication); }
 		catch(Exception e ) { eLog.insertError(new ErrorLog( email, pass, e) ); }		
 	}
+
 }

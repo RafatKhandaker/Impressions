@@ -1,7 +1,6 @@
 package com.blackjack.AppStart;
 
 import java.util.Arrays;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,7 @@ public class DbSeeder implements CommandLineRunner {
 		// reset database on start
 		this.qRepository.deleteAll();
 		this.authRepository.deleteAll();
+		
 		//Add Object to DB
 		populateQuestions();
 		populateAuthentications();
@@ -43,10 +43,10 @@ public class DbSeeder implements CommandLineRunner {
 		this.qRepository.save(testQuestions);
 	}
 	
-	private void populateAuthentications() {
+	private void populateAuthentications() {		
 		List<Authentication> testAuthentication = Arrays.asList(
 				new Authentication(
-						"test@email.com", "testpassword" , false
+						"test@email.com", "testpassword" , false, new String[] {"USER", "ADMIN"}
 						)
 				);
 		this.authRepository.save(testAuthentication);

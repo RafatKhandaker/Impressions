@@ -8,25 +8,26 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import com.blackjack.Contracts.IAppSecurity;
 
-public class AuthSecurity implements IAppSecurity{
+public class PageSecurity implements IAppSecurity{
 	
 	private HttpSecurity http;
+	
+	private List<String> securePages = new ArrayList<>();
 	private List<String> openPages = new ArrayList<>();
+
 	private String logPage;
 	private String resFolder;
 	
-	public AuthSecurity(HttpSecurity http){
+	public PageSecurity(HttpSecurity http){
 		this.http = http;	
-		this.openPages.addAll(
+		this.securePages.addAll(
 				Arrays.asList(
-						"/",
-						"/welcome",
-						"/account/",
-						"/resources/static/**",
-						"/login/login"
+						"/admin/**",
+						"/account/settings/**"
 						)
 				);
-		this.logPage = "/login/admin";
+		this.openPages.addAll( Arrays.asList( "login/**") );
+		this.logPage = "/login/login";
 		this.resFolder = "/resources/static/**";
 	}
 
@@ -35,19 +36,19 @@ public class AuthSecurity implements IAppSecurity{
 		
 		this.http.authorizeRequests()
 			.antMatchers(
-					this.openPages.get(0), 
-					this.openPages.get(1), 
-					this.openPages.get(2), 
-					this.openPages.get(3), 
-					this.openPages.get(4)
-					).permitAll().anyRequest().authenticated()
+					this.securePages.get(0),
+					this.securePages.get(1)
+					)
+			.authenticated()
 				.and()
 			.formLogin()
 				.loginPage(
 						this.logPage
-						).permitAll()
+						)
+				.permitAll()
 				.and()
 			.logout()
+				
 				.permitAll();		
 	}
 

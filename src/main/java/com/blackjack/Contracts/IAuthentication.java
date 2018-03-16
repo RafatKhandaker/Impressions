@@ -1,12 +1,13 @@
 package com.blackjack.Contracts;
 
+import java.sql.Timestamp;
+
 public interface IAuthentication {
 
-	public String getEmail();
-	public String getPassword();
-	public boolean getIsActive();
+	public boolean isActive();
 	
-	public void setEmail( String email );
-	public void setPassword( String password );
-	public void setIsActive( boolean isActive );
+	public Timestamp dateCreated();
+	
+	public Timestamp lastLogin();
+	
 }
