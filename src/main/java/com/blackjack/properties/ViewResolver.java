@@ -23,13 +23,16 @@ import org.springframework.stereotype.Component;
 	 @Value("${view.login}")
 	 private String loginPage;
 	 
+	 @Value("${view.register}")
+	 private String registerPage;
+	 
 	 @Value("${view.login-index}")
 	 private String loginIndexPage;
 	 
 	 @Value("${view.account-settings-index}")
 	 private String accountSettingsIndexPage;
 	 
-	public ViewResolver() {}
+	 public ViewResolver() {}
 	 
 	 public String getWelcome() {
 		 return this.welcomePage;
@@ -49,6 +52,10 @@ import org.springframework.stereotype.Component;
 	 
 	 public String getLogin() {
 		 return this.loginPage;
+	 }
+	 
+	 public String getRegister() {
+		 return this.registerPage;
 	 }
 	 
 	 public String getLoginIndex() {

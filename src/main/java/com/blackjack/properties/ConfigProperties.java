@@ -14,6 +14,9 @@ public class ConfigProperties {
 	@Value("${model.login.msg}")
 	private String loginMsg;
 	
+	@Value("${model.existing.acc}")
+	private String existingAccMsg;
+	
 	public ConfigProperties(){}
 	
 	public String getRegisterMsg() {
@@ -22,5 +25,9 @@ public class ConfigProperties {
 	
 	public String getLoginMsg() {
 		return this.loginMsg;
+	}
+	
+	public String getExistingAccMsg() {
+		return this.existingAccMsg;
 	}
 }

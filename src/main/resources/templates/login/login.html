@@ -3,8 +3,8 @@
 	<head>	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="_csrf" content="${_csrf.token}"/>
-		<meta name="_csrf_header" content="${_csrf.headerName}"/>
+       <!--   <meta name="_csrf" th:content="${_csrf.token}"/>
+		<meta name="_csrf_header" th:content="${_csrf.headerName}"/> -->
 		
 		<title>Login Page</title>
 		
@@ -14,15 +14,15 @@
 		<div class="container">
   			<div class="modal-wrapper">
     				<div class="profile-img">
-      				<div class="profile-add"></div>
+      				<div class="profile-add hide"></div>
     				</div>
     				<div class="load-gif">
       				<div>Sending...</div>
     				</div>
     				<div class="text-wrapper show">
       				<div class="nav">
-        					<div class="login">Login</div>
-        					<div class="sign-up selected">Sign Up</div>
+        					<div class="login selected">Login</div>
+        					<div class="sign-up">Sign Up</div>
       				</div>
       				<form class="form-class" method="post" >
       				<div class="form email">
@@ -42,14 +42,15 @@
         					<div class="form-title">Password</div>
         					<input id="psw1" type="password" class="content" name="password"></input>
       				</div>
-      				<div class="form retype">
+      				<div class="form retype ani-hide">
         					<div class="form-title">Retype Password</div>
         					<input id="psw2" type="password" class="content" name="password2"></input>
       				</div>
       				</form>
+      				<div class="validator" th:text="${account_exist != null}? ${account_exist}"></div>
       				<div class="validator hide"></div>
       				<div class="button">Submit</div>
-      				<div class="forget hide">Forget your password?</div>
+      				<div class="forget">Forget your password?</div>
     				</div>
   			</div>
   			<div class="overlay"></div>

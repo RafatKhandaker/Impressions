@@ -8,7 +8,7 @@ public interface IDBService {
 	
 	public Authentication pullUserAccount(String email);
 
-	public boolean checkLoginCred(String email, String password);
+	public boolean checkAccountExist(String email);
 	
 	public void insertNewAccount(String email, String password);
 	

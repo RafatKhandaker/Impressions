@@ -72,18 +72,17 @@ public class DBService<T> implements IDBService 	{
 	}
 
 	@Override
-	public boolean checkLoginCred(String email, String pass) {
+	public boolean checkAccountExist(String email) {
 		
-		try { return pass.equals( this.authRepo.findByEmail(email).getPassword()); }
-		catch(Exception e) { eLog.insertError( new ErrorLog(email , pass, e) ); }
-		
+		try { return  ( this.authRepo.findByEmail(email) != null )? true: false; }
+		catch(Exception e) { eLog.insertError( new ErrorLog(email , e) ); }
 		return false;
 	}
 
 	public void insertNewAccount(String email, String pass) {
 		List<Authentication> newAuthentication = Arrays.asList(
 				new Authentication(
-						email, pass, false
+						email, pass, false, new String[]{ "USER" }
 						)
 				);
 		try { this.authRepo.save(newAuthentication); }
