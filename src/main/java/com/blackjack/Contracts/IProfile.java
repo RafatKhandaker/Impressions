@@ -28,7 +28,7 @@ public interface IProfile {
 	 public int zipcode();
 	 
 	 @Null
-	 public List<Double> geoLocation();
+	 public Double[] geoLocation();
 	 
 	 public String summary();
 	 

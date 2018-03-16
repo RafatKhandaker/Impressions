@@ -60,4 +60,7 @@ public class LoginController{
 		return viewResolver.getLogin();
 	}	
 		
+	// Temporary method to develop the page
+	@GetMapping("/register")
+	public String getRegister() { return viewResolver.getRegister(); }
 }

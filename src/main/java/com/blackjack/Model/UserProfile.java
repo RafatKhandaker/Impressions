@@ -18,12 +18,27 @@ public class UserProfile implements IProfile{
 	private String firstName;
 	private String lastName;
 	private int zipcode;
-	private List<Double> geoLocation;
+	private Double[] geoLocation;
 	private String summary;
 	private Survey<Object> survey;
 	private List<Comments> anonComments;
 	private Date lastOnline;
-	private boolean isActive;
+	
+	public UserProfile( 
+			String email, 
+			String firstName, 
+			String lastName, 
+			int zipcode, 
+			String summary, 
+			Date lastOnline
+			) {
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.zipcode = zipcode;
+		this.summary = summary;
+		this.lastOnline = lastOnline;
+	}
 	
 	public UserProfile( 
 			String email, 
@@ -31,12 +46,11 @@ public class UserProfile implements IProfile{
 			String firstName, 
 			String lastName, 
 			int zipcode, 
-			List<Double> geoLocation, 
+			Double[] geoLocation, 
 			String summary, 
 			Survey<Object> survey, 
 			List<Comments> anonComments, 
-			Date lastOnline,
-			boolean isActive
+			Date lastOnline
 			) {
 		this.email = email;
 		this.pictures = pictures;
@@ -48,7 +62,6 @@ public class UserProfile implements IProfile{
 		this.survey = survey;
 		this.anonComments = anonComments;
 		this.lastOnline = lastOnline;
-		this.isActive = isActive;
 	}
 	
 	public String email() { 
@@ -67,7 +80,7 @@ public class UserProfile implements IProfile{
 		return this.zipcode; 
 		}
 	
-	public List<Double> geoLocation() { 
+	public Double[] geoLocation() { 
 		return this.geoLocation; 
 		}
 	
@@ -86,10 +99,6 @@ public class UserProfile implements IProfile{
 	public Date lastOnline() { 
 		return this.lastOnline; 
 		} 
-	
-	public boolean isActive() { 
-		return this.isActive; 
-		}
 
 	@Override
 	public Queue<Picture> pictures() { 
