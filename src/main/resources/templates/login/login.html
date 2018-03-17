@@ -47,8 +47,8 @@
         					<input id="psw2" type="password" class="content" name="password2"></input>
       				</div>
       				</form>
-      				<div class="validator" th:text="${account_exist != null}? ${account_exist}"></div>
-      				<div class="validator hide"></div>
+				<div th:if="${param.error}" class="alert-error" >* Invalid Account *</div>
+                <div th:if="${param.logout}" class="alert-success"> Account Logged Out</div>      				<div class="validator hide"></div>
       				<div class="button">Submit</div>
       				<div class="forget">Forget your password?</div>
     				</div>

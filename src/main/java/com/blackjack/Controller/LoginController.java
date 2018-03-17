@@ -39,7 +39,6 @@ public class LoginController{
 		
 	@PostMapping("/login")
 	public String submitLogin(Model model) {
-		model.addAttribute("account_exist", "");
 		return viewResolver.getAccountSettingsIndex(); 
 	}
 				
@@ -49,15 +48,15 @@ public class LoginController{
 			@RequestParam("password") String password
 			) {
 		
-		if( !dbService.checkAccountExist(email) ) {  
-			dbService.insertNewAccount(email, password);
-			model.addAttribute("new_register", configProp.getRegisterMsg());
-			
-			return viewResolver.getRegister(); 
-			}
+		if( dbService.checkAccountExist(email) ) {  
+			model.addAttribute("account_exist", configProp.getExistingAccMsg());
+			return viewResolver.getLogin();
+		}
 		
-		model.addAttribute("account_exist", configProp.getExistingAccMsg());
-		return viewResolver.getLogin();
+		dbService.insertNewAccount(email, password);
+		model.addAttribute("new_register", configProp.getRegisterMsg());
+		
+		return viewResolver.getRegister(); 
 	}	
 		
 	// Temporary method to develop the page

@@ -10,6 +10,8 @@ public interface IDBService {
 
 	public boolean checkAccountExist(String email);
 	
+	public boolean checkLoginCred(String email, String password);
+	
 	public void insertNewAccount(String email, String password);
 	
 }

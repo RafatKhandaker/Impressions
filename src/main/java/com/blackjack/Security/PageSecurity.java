@@ -54,7 +54,12 @@ public class PageSecurity implements IAppSecurity{
 
 	@Override
 	public void ignoreResourceFolder() throws Exception {
-		this.http.authorizeRequests().antMatchers(this.resFolder).permitAll().anyRequest().permitAll();
+		this.http
+			.authorizeRequests()
+			.antMatchers(this.resFolder)
+			.permitAll()
+			.anyRequest()
+			.permitAll();
 
 	}
 
@@ -62,7 +67,7 @@ public class PageSecurity implements IAppSecurity{
 	public void enableCSRFProtection() throws Exception {
 		this.http
 			.csrf()
-				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());		
+			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());		
 	}
 
 	@Override

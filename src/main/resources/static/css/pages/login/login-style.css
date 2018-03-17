@@ -393,6 +393,18 @@ form {
     padding-bottom: 15px;
 }
 
+.alert-error{
+	color: #ff0000;
+	margin-top: -15%;
+    padding-bottom: 15px;
+}
+
+.alert-success{
+	color: #14A989;
+	margin-top: -15%;
+    padding-bottom: 15px;
+}
+
 .hide{
 	display: none;
 }
