@@ -44,7 +44,7 @@
 		  else{ hideValidMsg(); }
 		  
 		  if(login.hasClass('selected')){ form.attr('action','/login/login'); }
-		  if(signup.hasClass('selected')){ form.attr('action', '/login/register'); }
+		  if(signup.hasClass('selected')){ form.attr('action', '/login/signup'); }
 		  
 		  return form.submit();
 	  };

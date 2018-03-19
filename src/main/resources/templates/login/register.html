@@ -18,32 +18,39 @@
 						<legend><span class="number">1</span> Candidate Info</legend>
 						<input id="fname" type="text" name="firstname" placeholder="Your First Name *">
 						<input id="lname" type="text" name="lastname" placeholder="Your Last Name *">
-						<input type="email" name="field2" placeholder="Your Email *">
+						<input type="text" pattern="[0-9]{5}" name="zipcode" placeholder="Your Zip Code *">
 						<textarea name="field3" placeholder="About yourself"></textarea>
-						<label for="job">Interests:</label>
-						<select id="job" name="field4">
-							<optgroup label="Indoors">
-  								<option value="fishkeeping">Fishkeeping</option>
-  								<option value="reading">Reading</option>
- 						    		<option value="boxing">Boxing</option>
-  								<option value="debate">Debate</option>
-  								<option value="gaming">Gaming</option>
-  								<option value="snooker">Snooker</option>
- 						    		<option value="other_indoor">Other</option>
-							</optgroup>
-							<optgroup label="Outdoors">
-  								<option value="football">Football</option>
-  								<option value="swimming">Swimming</option>
-  								<option value="fishing">Fishing</option>
-  								<option value="climbing">Climbing</option>
-  								<option value="cycling">Cycling</option>
-  								<option value="other_outdoor">Other</option>
-							</optgroup>
-						</select>      
+						<label for="job"><h3>Interests:</h3></label>
+						<div id="interests" style="height: 6em; width: 12em;">
+							<div class="int-container-1">
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="reading" />reading</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="debate" />debate</label>
+				 				<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="chess" />chess</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="boxing" />boxing</label>			
+							</div>
+							<div class="int-container-2" style="height: 6em; width: 12em;">
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="kick-boxing" />kick-boxing</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="football" />football</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="swimming" />swimming</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="fishing" />fishing</label>
+							</div>
+							<div class="int-container-3" style="height: 6em; width: 12em;">
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="climbing" />climbing</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="soccer" />soccer</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="baseball" />baseball</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="hockey" />hockey</label>	
+							</div>		
+							<div class="int-container-4" style="height: 6em; width: 12em;">
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="technology" />technology</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="history" />history</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="politics" />politics</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="social" />social</label>	
+							</div>						
+						</div> 
 					</fieldset>
-					<fieldset>
+					<fieldset class="add-info">
 						<legend><span class="number">2</span> Additional Info</legend>
-						<textarea name="field3" placeholder="About Your School"></textarea>
+						<textarea name="field3" placeholder="Why do you want to join impressions?"></textarea>
 					</fieldset>
 					<input type="submit" value="Apply" />
 				</form>

@@ -23,6 +23,7 @@ public class UserProfile implements IProfile{
 	private Survey<Object> survey;
 	private List<Comments> anonComments;
 	private Date lastOnline;
+	private String[] interests;
 	
 	public UserProfile( 
 			String email, 
@@ -30,7 +31,8 @@ public class UserProfile implements IProfile{
 			String lastName, 
 			int zipcode, 
 			String summary, 
-			Date lastOnline
+			Date lastOnline,
+			String[] interests
 			) {
 		this.email = email;
 		this.firstName = firstName;
@@ -38,6 +40,7 @@ public class UserProfile implements IProfile{
 		this.zipcode = zipcode;
 		this.summary = summary;
 		this.lastOnline = lastOnline;
+		this.interests = interests;
 	}
 	
 	public UserProfile( 
@@ -66,39 +69,43 @@ public class UserProfile implements IProfile{
 	
 	public String email() { 
 		return this.email; 
-		}
+	}
 	
 	public String firstName() { 
 		return this.firstName; 
-		}
+	}
 	
 	public String lastName() { 
 		return this.lastName; 
-		}
+	}
 	
 	public int zipcode() { 
 		return this.zipcode; 
-		}
+	}
 	
 	public Double[] geoLocation() { 
 		return this.geoLocation; 
-		}
+	}
 	
 	public String summary() { 
 		return this.summary; 
-		}
+	}
 	
 	public Survey<Object> survey() { 
 		return this.survey; 
-		}
+	}
 	
 	public List<Comments> anonComments() { 
 		return this.anonComments; 
-		}
+	}
 
 	public Date lastOnline() { 
 		return this.lastOnline; 
-		} 
+	} 
+	
+	public String[] getInterests() {
+		return this.interests;
+	}
 
 	@Override
 	public Queue<Picture> pictures() { 

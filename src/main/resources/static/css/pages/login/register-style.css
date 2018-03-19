@@ -19,18 +19,67 @@
 	float: right;
 }
 
+#interests{
+	height:120px;
+	width: 400px;
+	display: flex;
+}
+
+.int-container-1{
+	float: left;
+	display: inline;
+	width: 130px;	
+	height: 120px;
+}
+.int-container-2{
+	width: 130px;
+	float: left;
+	display: inline;
+}
+.int-container-3{
+	width: 130px;
+	float: left;
+	display: inline;
+}
+
+h3{
+	display: inline;
+}
+
+.number{
+	padding-top: 10px;
+}
+.int-container-4{
+	width: 130px;
+	float: left;
+	display: inline;
+}
+
+.in-cbox{
+	width: 5px;
+	height: 5px;
+}
+
+.lbl-cbox{
+	margin-top: 7px;
+	width: 120px;
+}
+
 .image-slide{
-	float:left;
+	float:right;
+}
+
+.add-info{
+	margin-top: 20px;
 }
 
 .form-style-5{
-	opacity: 0.5;
-	float: right;
+	float: left;
     max-width: 500px;
     padding: 10px 20px;
     background: #f4f7f8;
     margin-top: 2%;
-    margin-right: 3%;
+    margin-left: 3%;
     padding: 20px;
     background: #2A2D33;
     border-radius: 8px;
