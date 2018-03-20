@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.blackjack.Model.Authentication;
 import com.blackjack.Model.Question;
 import com.blackjack.Repository.AuthenticationRepository;
+import com.blackjack.Repository.ProfilesRepository;
 import com.blackjack.Repository.QuestionsRepository;
 
 @Component
@@ -19,6 +20,8 @@ public class DbSeeder implements CommandLineRunner {
 	private QuestionsRepository qRepository;
 	@Autowired
 	private AuthenticationRepository authRepository;
+	@Autowired
+	private ProfilesRepository profRepo;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -27,6 +30,7 @@ public class DbSeeder implements CommandLineRunner {
 		// reset database on start
 		this.qRepository.deleteAll();
 		this.authRepository.deleteAll();
+		this.profRepo.deleteAll();
 		
 		//Add Object to DB
 		populateQuestions();

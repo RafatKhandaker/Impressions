@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 @SessionAttributes("user")
 @Controller
@@ -43,23 +44,33 @@ public class LoginController{
 	}	
 		
 	@PostMapping("/login")
-	public String submitLogin(Model model) {
+	public String submitLogin(Model model,
+			@RequestParam("username") @ModelAttribute("user") String email
+			) {
 		return viewResolver.getAccountSettingsIndex(); 
 	}
 				
 	@PostMapping("/signup")
-	public String newSignUp(Model model,
-			@RequestParam("username") @ModelAttribute("user") String email, 
+	public ModelAndView newSignUp(Model model,
+			@RequestParam("username") String email, 
 			@RequestParam("password") String password
 			) {
+		ModelAndView modView = new ModelAndView(); 
+		
 		if( dbService.checkAccountExist(email) ) {  
 			model.addAttribute("account_exist", configProp.getExistingAccMsg());
-			return viewResolver.getLogin();
+			modView.setViewName(viewResolver.getLogin());
+
+			return modView;
 		}
 		
 		dbService.insertNewAccount(email, password);
 		model.addAttribute("new_register", configProp.getRegisterMsg());
-		return viewResolver.getRegister(); 
+
+		modView.addObject("user", email);
+		modView.setViewName(getRegister(model));
+		
+		return modView; 
 	}	
 	
 	@PostMapping("/register")
@@ -76,11 +87,7 @@ public class LoginController{
 	public String getRegister(Model model) { 
 		model.addAttribute("reg_form", new RegisterForm());
 		return viewResolver.getRegister(); 
-		}
-	
-	
-	@ModelAttribute("user")
-	public Object userSessionAttribute() {
-		return new Object();
 	}
+	
+	
 }

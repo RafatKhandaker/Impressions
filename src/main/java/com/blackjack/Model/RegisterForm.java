@@ -16,11 +16,11 @@ public class RegisterForm implements IForm{
     String txtJoinThoughts;
     
     
-    public void settxtFname(String txtFName) { 
+    public void settxtFName(String txtFName) { 
 		this.txtFName = txtFName; 
 	}
     
-    public void settxtLname(String txtLName) { 
+    public void settxtLName(String txtLName) { 
 		this.txtLName = txtLName; 
     }
     
