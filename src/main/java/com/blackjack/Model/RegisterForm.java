@@ -1,9 +1,11 @@
 package com.blackjack.Model;
 
+import com.blackjack.Contracts.IForm;
+
 import lombok.Data;
 
 @Data
-public class RegisterForm {
+public class RegisterForm implements IForm{
 
     String txtFName;
     String txtLName; 
