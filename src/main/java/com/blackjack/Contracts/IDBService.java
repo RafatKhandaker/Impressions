@@ -14,4 +14,6 @@ public interface IDBService {
 	
 	public void insertNewAccount(String email, String password);
 	
+	 public void insertNewProfile(String email, IForm proForm);
+
 }

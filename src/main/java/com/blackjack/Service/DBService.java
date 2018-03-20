@@ -1,6 +1,8 @@
 package com.blackjack.Service;
 
 import java.util.Arrays;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,18 +12,21 @@ import org.springframework.stereotype.Component;
 
 import com.blackjack.Contracts.IAuthentication;
 import com.blackjack.Contracts.IDBService;
+import com.blackjack.Contracts.IForm;
 import com.blackjack.Contracts.ILogger;
 import com.blackjack.Contracts.IProfile;
 import com.blackjack.Contracts.IResponse;
 import com.blackjack.Contracts.ISurvey;
 import com.blackjack.Model.Authentication;
 import com.blackjack.Model.ErrorLog;
+import com.blackjack.Model.RegisterForm;
+import com.blackjack.Model.UserProfile;
 import com.blackjack.Repository.AuthenticationRepository;
 import com.blackjack.Repository.CommentsRepository;
 import com.blackjack.Repository.QuestionsRepository;
 import com.blackjack.Repository.RepliesRepository;
 import com.blackjack.Repository.SurveysRepository;
-import com.blackjack.Repository.UserProfilesRepository;
+import com.blackjack.Repository.ProfilesRepository;
 
 @SuppressWarnings("unused")
 @Component
@@ -38,7 +43,7 @@ public class DBService<T> implements IDBService 	{
 	@Autowired
 	private SurveysRepository survRepo;
 	@Autowired
-	private UserProfilesRepository userProfRepo;
+	private ProfilesRepository profRepo;
 	
 	@Autowired
 	private ILogger eLog;
@@ -95,6 +100,22 @@ public class DBService<T> implements IDBService 	{
 				);
 		try { this.authRepo.save(newAuthentication); }
 		catch(Exception e ) { eLog.insertError(new ErrorLog( email, pass, e) ); }		
+	}
+
+	@Override
+	public void insertNewProfile(String email, IForm proForm) {
+		List<UserProfile> newProfiles = Arrays.asList(
+				new UserProfile( 
+						email, 
+						proForm.gettxtFName(), 
+						proForm.gettxtLName(),
+						proForm.getzipcode(), 
+						proForm.gettxtSummaryField(),	 
+						proForm.getmultiCheckInterests() 
+						)
+				);
+		try { this.profRepo.save(newProfiles); }
+		catch(Exception e) { eLog.insertError(new ErrorLog( email, e)); }
 	}
 
 }

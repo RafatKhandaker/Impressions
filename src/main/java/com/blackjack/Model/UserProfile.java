@@ -1,6 +1,6 @@
 package com.blackjack.Model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Queue;
 
@@ -22,7 +22,7 @@ public class UserProfile implements IProfile{
 	private String summary;
 	private Survey<Object> survey;
 	private List<Comments> anonComments;
-	private Date lastOnline;
+	private Timestamp lastOnline;
 	private String[] interests;
 	
 	public UserProfile( 
@@ -31,7 +31,6 @@ public class UserProfile implements IProfile{
 			String lastName, 
 			int zipcode, 
 			String summary, 
-			Date lastOnline,
 			String[] interests
 			) {
 		this.email = email;
@@ -39,7 +38,7 @@ public class UserProfile implements IProfile{
 		this.lastName = lastName;
 		this.zipcode = zipcode;
 		this.summary = summary;
-		this.lastOnline = lastOnline;
+		this.lastOnline = new Timestamp(System.currentTimeMillis());		
 		this.interests = interests;
 	}
 	
@@ -52,8 +51,7 @@ public class UserProfile implements IProfile{
 			Double[] geoLocation, 
 			String summary, 
 			Survey<Object> survey, 
-			List<Comments> anonComments, 
-			Date lastOnline
+			List<Comments> anonComments
 			) {
 		this.email = email;
 		this.pictures = pictures;
@@ -64,7 +62,7 @@ public class UserProfile implements IProfile{
 		this.summary = summary;
 		this.survey = survey;
 		this.anonComments = anonComments;
-		this.lastOnline = lastOnline;
+		this.lastOnline = new Timestamp(System.currentTimeMillis());
 	}
 	
 	public String email() { 
@@ -99,7 +97,7 @@ public class UserProfile implements IProfile{
 		return this.anonComments; 
 	}
 
-	public Date lastOnline() { 
+	public Timestamp lastOnline() { 
 		return this.lastOnline; 
 	} 
 	

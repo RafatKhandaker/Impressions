@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.blackjack.Contracts.IDBService;
 import com.blackjack.Model.RegisterForm;
 import com.blackjack.properties.ConfigProperties;
-import com.blackjack.properties.ModelProperties;
 import com.blackjack.properties.ViewResolver;
 
 import org.springframework.stereotype.Controller;
@@ -15,8 +14,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
-
+@SessionAttributes("user")
 @Controller
 @RequestMapping("/login")
 public class LoginController{
@@ -48,7 +49,7 @@ public class LoginController{
 				
 	@PostMapping("/signup")
 	public String newSignUp(Model model,
-			@RequestParam("username") String email, 
+			@RequestParam("username") @ModelAttribute("user") String email, 
 			@RequestParam("password") String password
 			) {
 		if( dbService.checkAccountExist(email) ) {  
@@ -62,25 +63,24 @@ public class LoginController{
 	}	
 	
 	@PostMapping("/register")
-	public String registerProfile(@ModelAttribute("command") RegisterForm regForm, Model model ) {
-		return "";
+	public String registerProfile(Model model,
+			@SessionAttribute("user") String user,
+			@ModelAttribute("reg_form") RegisterForm regForm
+			) {
+		dbService.insertNewProfile(user, regForm);
+		return viewResolver.getRegister(); 
 	}
 		
 	// Temporary method to develop the page
 	@GetMapping("/register")
 	public String getRegister(Model model) { 
+		model.addAttribute("reg_form", new RegisterForm());
 		return viewResolver.getRegister(); 
 		}
 	
 	
-	// register form
-	@ModelAttribute("multiActivityValues")
-	public String[] getMultiActivityValues() {
-	    return new String[] {
-	        "reading", "debate", "chess", "boxing", 
-	        "kick-boxing", "football", "swimming","fishing",
-	        "climbing","soccer","baseball","hockey","technology",
-	        "history", "politics", "social"
-	    };
+	@ModelAttribute("user")
+	public Object userSessionAttribute() {
+		return new Object();
 	}
 }

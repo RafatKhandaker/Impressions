@@ -25,6 +25,15 @@
 	display: flex;
 }
 
+.rad-container{
+	display: inline;
+	width: 300px;
+	color: #FFFFFF;
+}
+.rad-btn{
+	display: inline;
+	float: left;
+}
 .int-container-1{
 	float: left;
 	display: inline;
