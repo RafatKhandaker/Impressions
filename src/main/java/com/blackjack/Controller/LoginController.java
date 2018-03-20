@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.blackjack.Contracts.IDBService;
 import com.blackjack.Model.RegisterForm;
 import com.blackjack.properties.ConfigProperties;
-import com.blackjack.properties.ModelProperties;
 import com.blackjack.properties.ViewResolver;
 
 import org.springframework.stereotype.Controller;
@@ -62,13 +61,16 @@ public class LoginController{
 	}	
 	
 	@PostMapping("/register")
-	public String registerProfile(@ModelAttribute("command") RegisterForm regForm, Model model ) {
-		return "";
+	public String registerProfile(Model model,
+			@ModelAttribute("reg_form") RegisterForm regForm
+			) {
+		return viewResolver.getRegister(); 
 	}
 		
 	// Temporary method to develop the page
 	@GetMapping("/register")
 	public String getRegister(Model model) { 
+		model.addAttribute("reg_form", new RegisterForm());
 		return viewResolver.getRegister(); 
 		}
 	
@@ -77,10 +79,8 @@ public class LoginController{
 	@ModelAttribute("multiActivityValues")
 	public String[] getMultiActivityValues() {
 	    return new String[] {
-	        "reading", "debate", "chess", "boxing", 
-	        "kick-boxing", "football", "swimming","fishing",
-	        "climbing","soccer","baseball","hockey","technology",
-	        "history", "politics", "social"
+	        "reading","debate","chess","boxing","kick-boxing","football","swimming","fishing",
+	        "climbing","soccer","baseball","hockey","technology","history","politics", "social"
 	    };
 	}
 }

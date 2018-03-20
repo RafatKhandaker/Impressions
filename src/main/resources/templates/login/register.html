@@ -13,38 +13,44 @@
 			<h3 th:text="${new_register}"></h3>
 			<div class="image-slide"></div>
 			<div class="form-style-5">
-				<form>
+				<form method="post" th:action="@{/login/register}" th:object="${reg_form}">
 					<fieldset>
 						<legend><span class="number">1</span> Candidate Info</legend>
-						<input id="fname" type="text" name="firstname" placeholder="Your First Name *">
-						<input id="lname" type="text" name="lastname" placeholder="Your Last Name *">
-						<input type="text" pattern="[0-9]{5}" name="zipcode" placeholder="Your Zip Code *">
-						<textarea name="field3" placeholder="About yourself"></textarea>
-						<label for="job"><h3>Interests:</h3></label>
+						<input id="fname" type="text" name="firstname" th:field="*{txtFName}" placeholder="Your First Name *">
+						<input id="lname" type="text" name="lastname" th:field="*{txtLName}" placeholder="Your Last Name *">
+						<input id="zcode" type="text" pattern="[0-9]{5}" name="zipcode" th:field="*{zipcode}" placeholder="Your Zip Code *">
+						<textarea id="abtsummary" name="summary" th:field="*{txtSummaryField}"  placeholder="About yourself"></textarea>
+						<div class="rad-container">
+							<label for="sex"><h3>gender:</h3></label>
+							<input class="rad-btn" type="radio" name="gender" th:field="*{radSex}" value="male" checked>male<br>
+  							<input class="rad-btn" type="radio" name="gender" th:field="*{radSex}" value="female">female<br>
+  							<input class="rad-btn" type="radio" name="gender" th:field="*{radSex}" value="ts">ts<br>
+						</div><br/>
+						<label for="ints"><h3>Interests:</h3></label>
 						<div id="interests" style="height: 6em; width: 12em;">
 							<div class="int-container-1">
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="reading" />reading</label>
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="debate" />debate</label>
-				 				<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="chess" />chess</label>
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="boxing" />boxing</label>			
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="reading" />reading</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="debate" />debate</label>
+				 				<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="chess" />chess</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="boxing" />boxing</label>			
 							</div>
 							<div class="int-container-2" style="height: 6em; width: 12em;">
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="kick-boxing" />kick-boxing</label>
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="football" />football</label>
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="swimming" />swimming</label>
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="fishing" />fishing</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="kick-boxing" />kick-boxing</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="football" />football</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="swimming" />swimming</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="fishing" />fishing</label>
 							</div>
 							<div class="int-container-3" style="height: 6em; width: 12em;">
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="climbing" />climbing</label>
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="soccer" />soccer</label>
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="baseball" />baseball</label>
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="hockey" />hockey</label>	
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="climbing" />climbing</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="soccer" />soccer</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="baseball" />baseball</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="hockey" />hockey</label>	
 							</div>		
 							<div class="int-container-4" style="height: 6em; width: 12em;">
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="technology" />technology</label>
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="history" />history</label>
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="politics" />politics</label>
- 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" value="social" />social</label>	
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="technology" />technology</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="history" />history</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="politics" />politics</label>
+ 								<label class="lbl-cbox"><input type="checkbox" name="interests[]" th:field="*{multiCheckInterests}" value="social" />social</label>	
 							</div>						
 						</div> 
 					</fieldset>
