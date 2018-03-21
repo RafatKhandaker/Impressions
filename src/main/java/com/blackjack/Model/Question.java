@@ -14,7 +14,13 @@ public class Question<T> {
 	private String question;
 	private double score;
 	
-	public Question(String email, String surveyId, String surveyName, String question, Double score){
+	public Question(
+			String email, 
+			String surveyId, 
+			String surveyName, 
+			String question, 
+			Double score
+			){
 		this.email = email;
 		this.surveyId = surveyId;
 		this.surveyName = surveyName;

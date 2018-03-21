@@ -9,5 +9,5 @@ import com.blackjack.Model.ErrorLog;
 @Component
 @Repository
 public interface ErrorLogRepository extends MongoRepository<ErrorLog, String>{
-	
+
 }
