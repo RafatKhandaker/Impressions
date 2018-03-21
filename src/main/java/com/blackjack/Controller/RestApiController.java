@@ -38,6 +38,7 @@ public class RestApiController {
 	private QuestionsRepository qRepo;
 	@Autowired
 	private RepliesRepository rRepo;
+
 	
 	@SuppressWarnings("unused")
 	private SurveysRepository sRepo;
@@ -46,7 +47,7 @@ public class RestApiController {
 		this.qRepo = qRepo;
 	}
 	
-	@GetMapping("/all")
+	@GetMapping("/get")
 	public Object getAll(
 			@RequestParam(value="user", required=true) String user,
 			@RequestParam(value="key", required=true) String key,
@@ -66,22 +67,20 @@ public class RestApiController {
 					return this.aRepo.findByEmail(user);
 			}
 		}
+		
 		return null;
 	}
 	
-	@PutMapping
+	@PutMapping("/put")
 	public void insert(@RequestBody Question<Object> question) {
-		this.qRepo.insert(question);
 	}
 
-	@PostMapping
+	@PostMapping("post")
 	public void update(@RequestBody Question<Object> question) {
-		this.qRepo.save(question);
 	}
 	
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/del/{id}")
 	public void delete(@PathVariable("id") String id) {
-		this.qRepo.delete(id);
 	}
 
 }

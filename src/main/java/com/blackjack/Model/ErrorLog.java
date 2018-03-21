@@ -16,14 +16,18 @@ public class ErrorLog {
 	
 	@Id
 	private String id;
-	private String username;
-	
 	@Null
 	private String password;
-	private String log;
+	@Null
+	private String urlRequest;
 	
+	private String log;
+	private String username;
+
+
 	@Indexed(direction = IndexDirection.DESCENDING)
 	private Timestamp timeStamp;
+	
 	
 	public ErrorLog(String username, Exception error) {
 		this.username = username;
@@ -37,5 +41,10 @@ public class ErrorLog {
 		this.log = error.toString();	
 		this.timeStamp = new Timestamp(System.currentTimeMillis());
 
+	}
+	
+	public ErrorLog(String urlRequest, Exception error, boolean byHandler) {
+		this.urlRequest = urlRequest;
+		this.log = error.toString();
 	}
 }
