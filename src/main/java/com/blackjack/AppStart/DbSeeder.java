@@ -12,6 +12,7 @@ import com.blackjack.Model.Question;
 import com.blackjack.Repository.AuthenticationRepository;
 import com.blackjack.Repository.ProfilesRepository;
 import com.blackjack.Repository.QuestionsRepository;
+@SuppressWarnings("unused")
 
 @Component
 public class DbSeeder implements CommandLineRunner {
@@ -28,13 +29,13 @@ public class DbSeeder implements CommandLineRunner {
 		// TODO Auto-generated method stub
 		
 		// reset database on start
-		this.qRepository.deleteAll();
-		this.authRepository.deleteAll();
-		this.profRepo.deleteAll();
-		
-		//Add Object to DB
-		populateQuestions();
-		populateAuthentications();
+//		this.qRepository.deleteAll();
+//		this.authRepository.deleteAll();
+//		this.profRepo.deleteAll()
+//		
+//		//Add Object to DB
+//		populateQuestions();
+//		populateAuthentications();
 		
 	}
 	

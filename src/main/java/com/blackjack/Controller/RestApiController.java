@@ -59,7 +59,7 @@ public class RestApiController {
 				case "replychain":
 					return this.rRepo.findByEmail(user);
 				case "userprofile":
-					return this.pRepo.findByEmail(user);
+					return this.pRepo.findById(user);
 				case "comments":
 					return this.cRepo.findByEmail(user);
 				case "authentication":

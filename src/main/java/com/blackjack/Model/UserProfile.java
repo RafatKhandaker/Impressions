@@ -1,11 +1,14 @@
 package com.blackjack.Model;
 
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 import java.util.Queue;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.blackjack.Contracts.IProfile;
 
@@ -22,8 +25,14 @@ public class UserProfile implements IProfile{
 	private String summary;
 	private Survey<Object> survey;
 	private List<Comments> anonComments;
-	private Timestamp lastOnline;
+	
+	@Indexed
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	private Instant lastOnline;
+	
 	private String[] interests;
+	
+	public UserProfile() {}
 	
 	public UserProfile( 
 			String email, 
@@ -38,7 +47,7 @@ public class UserProfile implements IProfile{
 		this.lastName = lastName;
 		this.zipcode = zipcode;
 		this.summary = summary;
-		this.lastOnline = new Timestamp(System.currentTimeMillis());		
+		this.lastOnline = new Timestamp(System.currentTimeMillis()).toInstant();		
 		this.interests = interests;
 	}
 	
@@ -62,42 +71,42 @@ public class UserProfile implements IProfile{
 		this.summary = summary;
 		this.survey = survey;
 		this.anonComments = anonComments;
-		this.lastOnline = new Timestamp(System.currentTimeMillis());
+		this.lastOnline = new Timestamp(System.currentTimeMillis()).toInstant();
 	}
 	
-	public String email() { 
+	public String getemail() { 
 		return this.email; 
 	}
 	
-	public String firstName() { 
+	public String getfirstName() { 
 		return this.firstName; 
 	}
 	
-	public String lastName() { 
+	public String getlastName() { 
 		return this.lastName; 
 	}
 	
-	public int zipcode() { 
+	public int getzipcode() { 
 		return this.zipcode; 
 	}
 	
-	public Double[] geoLocation() { 
+	public Double[] getgeoLocation() { 
 		return this.geoLocation; 
 	}
 	
-	public String summary() { 
+	public String getsummary() { 
 		return this.summary; 
 	}
 	
-	public Survey<Object> survey() { 
+	public Survey<Object> getsurvey() { 
 		return this.survey; 
 	}
 	
-	public List<Comments> anonComments() { 
+	public List<Comments> getanonComments() { 
 		return this.anonComments; 
 	}
 
-	public Timestamp lastOnline() { 
+	public Instant getlastOnline() { 
 		return this.lastOnline; 
 	} 
 	
@@ -106,7 +115,7 @@ public class UserProfile implements IProfile{
 	}
 
 	@Override
-	public Queue<Picture> pictures() { 
+	public Queue<Picture> getpictures() { 
 		return this.pictures; 
 		}
 

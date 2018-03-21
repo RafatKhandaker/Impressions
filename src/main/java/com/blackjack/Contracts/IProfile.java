@@ -13,27 +13,27 @@ import com.blackjack.Model.Survey;
 public interface IProfile {
 	
 	 @NotNull
-	 public String email();
+	 public String getemail();
 
 	 @Null
-	 public Queue<Picture> pictures();
+	 public Queue<Picture> getpictures();
 	 
 	 @NotNull
-	 public String firstName();
+	 public String getfirstName();
 	
 	 @NotNull
-	 public String lastName();
+	 public String getlastName();
 	 	
 	 @NotNull
-	 public int zipcode();
+	 public int getzipcode();
 	 
 	 @Null
-	 public Double[] geoLocation();
+	 public Double[] getgeoLocation();
 	 
-	 public String summary();
+	 public String getsummary();
 	 
-	 public Survey<Object> survey();
+	 public Survey<Object> getsurvey();
 	 
-	 public List<Comments> anonComments();	
+	 public List<Comments> getanonComments();	
 	 
 }
